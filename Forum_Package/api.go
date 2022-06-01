@@ -1,13 +1,14 @@
-package Forum 
+package Forum
 
 import (
-	_ "github.com/mattn/go-sqlite3"
 	"database/sql"
-	"log"	
+	"log"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func InitDatabase(database string) *sql.DB {
-	db , err := sql.Open("sqlite3" , database)
+	db, err := sql.Open("sqlite3", database)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -28,7 +29,7 @@ func InitDatabase(database string) *sql.DB {
 								FOREIGN KEY (user_id) REFERENCES users(id)
 							);
 						 `
-	_ , err = db.Exec(sqlStmt)
+	_, err = db.Exec(sqlStmt)
 
 	if err != nil {
 		log.Fatal(err)
@@ -36,12 +37,12 @@ func InitDatabase(database string) *sql.DB {
 	return db
 }
 
-func InsertIntoUsers(db *sql.DB , name string , email string , password string) (int64 , error) {
-	result , _ := db.Exec(`INSERT INTO users (name , email , password) VALUES (? , ? , ?) ` , name , email , password)
+func InsertIntoUsers(db *sql.DB, name string, email string, password string) (int64, error) {
+	result, _ := db.Exec(`INSERT INTO users (name , email , password) VALUES (? , ? , ?) `, name, email, password)
 	return result.LastInsertId()
 }
 
-func insertIntoPosts(db *sql.DB , user_id int , content string) (int64 , error) {
-	result , _ := db.Exec(`INSERT INTO posts (user_id , content) VALUES (?,?) ` , user_id , content)
+func insertIntoPosts(db *sql.DB, user_id int, content string) (int64, error) {
+	result, _ := db.Exec(`INSERT INTO posts (user_id , content) VALUES (?,?) `, user_id, content)
 	return result.LastInsertId()
 }

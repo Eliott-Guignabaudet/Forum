@@ -1,12 +1,11 @@
 package main
 
 import (
-	"html/template"
-	"fmt"
-	"net/http"
 	Forum "Forum/Forum_Package"
+	"fmt"
+	"html/template"
+	"net/http"
 )
-
 
 func main() {
 	db := Forum.InitDatabase("ForumDB.db")
@@ -16,30 +15,29 @@ func main() {
 	defer db.Close()
 	fmt.Println("test")
 
-	http.HandleFunc("/" , func(rw http.ResponseWriter , r *http.Request) {
-		Home.Execute(rw , nil)
+	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
+		Home.Execute(rw, nil)
 	})
 
-	http.HandleFunc("/register" , func(rw http.ResponseWriter , r *http.Request){
+	http.HandleFunc("/register", func(rw http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
-			register.Execute(rw , nil)
+			register.Execute(rw, nil)
 			return
 		}
 		name := r.FormValue("Name")
 		email := r.FormValue("Email")
 		password := r.FormValue("Password")
-		
-		Forum.InsertIntoUsers(db , name , email, password)
+
+		Forum.InsertIntoUsers(db, name, email, password)
 		// Forum.InsertIntoUsers(db , "Mathieu" , "Mathieu@gmail.com" , "abcde")
 		// Forum.InsertIntoUsers(db , "Lucas" , "Lulu@gmail.com" , "klmno")
 
 		// http.Redirect(rw , r , "/" , http.StatusFound)
 	})
 
-	http.HandleFunc("/login" , func(rw http.ResponseWriter , r *http.Request) {
-		login.Execute(rw , nil)
+	http.HandleFunc("/login", func(rw http.ResponseWriter, r *http.Request) {
+		login.Execute(rw, nil)
 	})
-
 
 	fmt.Println("test1")
 	fs := http.FileServer(http.Dir("static"))
