@@ -61,30 +61,6 @@ body{
     height:5vh;
     width:10vh;
 }
-.Retour{
-    background-color: #fcd752;
-    border: 1px solid black;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:10vh;
-    width:20vh;
-}
-#retour{
-    height: 30vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    /* background-color: rgb(32, 52, 90); */
-    /* background-color: #01d758; */
-    /* background-color: #2b262d; */
-    background-color: #31383f;
-    height: 90px;
-    width: 100%;
-    border-radius: 35px;
-}
 
 #themebar{
     position: absolute;
@@ -93,7 +69,7 @@ body{
 }
 
 #button_environement{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(41, 160, 41);
     border-radius: 50px;
     font-size: 15px;
@@ -105,9 +81,14 @@ body{
     left: 20%;
     top: 20%;
 }
+#allpost{
+    margin-top:3%;
+    display: flex;
+    justify-content: center;
+}
 
 #button_sport{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(160, 92, 41);
     border-radius: 50px;
     font-size: 20px;
@@ -119,9 +100,16 @@ body{
     left: 35%;
     top: 20%;
 }
-
+#theme{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    row-gap: 2;
+    height: auto;
+}
 #button_tech{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(125, 143, 144);
     border-radius: 50px;
     font-size: 19px;
@@ -130,11 +118,9 @@ body{
     outline:2px #31383f;
     height: 50px;
     width: 200px;
-    left: 50%;
-    top: 20%;
 }
 #button_jeuxvid{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(79, 39, 158);
     border-radius: 50px;
     font-size: 19px;
@@ -148,7 +134,7 @@ body{
 }
 
 #button_saféréfléchir{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(160, 41, 148);
     border-radius: 50px;
     font-size: 15px;
@@ -162,7 +148,7 @@ body{
 }
 
 #button_autre{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(166, 249, 238);
     border-radius: 50px;
     font-size: 15px;
@@ -176,7 +162,7 @@ body{
 }
 
 #button_music{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(59, 14, 55);
     border-radius: 50px;
     font-size: 15px;
@@ -188,9 +174,17 @@ body{
     left: 50%;
     top: 30%;
 }
-
+.buttontheme{
+    margin: 1%;
+}
+.post{
+    display: flex;
+    justify-content: center;
+    width:80vw;
+    background-color: grey;
+}
 #button_humour{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(224, 20, 207);
     border-radius: 50px;
     font-size: 15px;
@@ -204,13 +198,16 @@ body{
 }
 
 #post{
-    position: absolute;
-    top: 20%;
-    left: 20%;
+    margin-top:5%;
+    display:flex;
+    justify-content: center;
 }
 
 #button_createPost{
-    position: absolute;
+    margin-top:5%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(172, 62, 62);
     border-radius: 50px;
     font-size: 15px;
@@ -219,8 +216,6 @@ body{
     outline:2px #31383f;
     height: 80px;
     width: 300px;
-    left: 40%;
-    top: 50%;
 }
 
 #contentPost{
