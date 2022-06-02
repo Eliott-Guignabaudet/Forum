@@ -6,6 +6,8 @@ body{
     background-color: #fcd752;
 }
 
+
+
 .logo{
     height: 110px;
     width: 130px;
@@ -74,4 +76,179 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    /* background-color: rgb(32, 52, 90); */
+    /* background-color: #01d758; */
+    /* background-color: #2b262d; */
+    background-color: #31383f;
+    height: 90px;
+    width: 100%;
+    border-radius: 35px;
+}
+
+#themebar{
+    position: absolute;
+    height: 100%;
+    width: 90px;
+}
+
+#button_environement{
+    position: absolute;
+    background-color: rgb(41, 160, 41);
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: "Pokemon";
+    color: beige;
+    outline:2px #31383f;
+    height: 50px;
+    width: 200px;
+    left: 20%;
+    top: 20%;
+}
+
+#button_sport{
+    position: absolute;
+    background-color: rgb(160, 92, 41);
+    border-radius: 50px;
+    font-size: 20px;
+    font-family: "Pokemon";
+    color: beige;
+    outline:2px #31383f;
+    height: 50px;
+    width: 200px;
+    left: 35%;
+    top: 20%;
+}
+
+#button_tech{
+    position: absolute;
+    background-color: rgb(125, 143, 144);
+    border-radius: 50px;
+    font-size: 19px;
+    font-family: "Pokemon";
+    color: beige;
+    outline:2px #31383f;
+    height: 50px;
+    width: 200px;
+    left: 50%;
+    top: 20%;
+}
+#button_jeuxvid{
+    position: absolute;
+    background-color: rgb(79, 39, 158);
+    border-radius: 50px;
+    font-size: 19px;
+    font-family: "Pokemon";
+    color: beige;
+    outline:2px #31383f;
+    height: 50px;
+    width: 200px;
+    left: 65%;
+    top: 20%;
+}
+
+#button_saféréfléchir{
+    position: absolute;
+    background-color: rgb(160, 41, 148);
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: "Pokemon";
+    color: beige;
+    outline:2px #31383f;
+    height: 50px;
+    width: 200px;
+    left: 20%;
+    top: 30%;
+}
+
+#button_autre{
+    position: absolute;
+    background-color: rgb(166, 249, 238);
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: "Pokemon";
+    color: beige;
+    outline:2px #31383f;
+    height: 50px;
+    width: 200px;
+    left: 65%;
+    top: 30%;
+}
+
+#button_music{
+    position: absolute;
+    background-color: rgb(59, 14, 55);
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: "Pokemon";
+    color: beige;
+    outline:2px #31383f;
+    height: 50px;
+    width: 200px;
+    left: 50%;
+    top: 30%;
+}
+
+#button_humour{
+    position: absolute;
+    background-color: rgb(224, 20, 207);
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: "Pokemon";
+    color: beige;
+    outline:2px #31383f;
+    height: 50px;
+    width: 200px;
+    left: 35%;
+    top: 30%;
+}
+
+#post{
+    position: absolute;
+    top: 20%;
+    left: 20%;
+}
+
+#button_createPost{
+    position: absolute;
+    background-color: rgb(172, 62, 62);
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: "Pokemon";
+    color: beige;
+    outline:2px #31383f;
+    height: 80px;
+    width: 300px;
+    left: 40%;
+    top: 50%;
+}
+
+#contentPost{
+    position: absolute;
+    height: 300px;
+    width: 600px;
+    resize: none;
+}
+#ball_envoyer{
+    position: absolute;
+    height: 100px;
+    width: 110px;
+}
+#ball_envoyer:hover{
+    animation: shake 1.25s cubic-bezier(.36,.07,.19,.97)  infinite; 
+}
+
+
+@font-face {
+    font-family: 'Pokemon';
+    src: url("../CSS/Pokemon\ Classic.ttf");
+}
+
+@keyframes shake {
+    0% { transform: translate(0, 0) rotate(0); }
+    20% { transform: translate(-10px, 0) rotate(-20deg); }
+    30% { transform: translate(10px, 0) rotate(20deg); }
+    50% { transform: translate(-10px, 0) rotate(-10deg); }
+    60% { transform: translate(10px, 0) rotate(10deg); }
+    100% { transform: translate(0, 0) rotate(0); }
 }
