@@ -119,6 +119,15 @@ body{
     height: 50px;
     width: 200px;
 }
+.jeu{
+    background-image: url("../CSS/528088.png");
+    background-size:100%;
+    background-color: #fcd752;
+    border: 1px solid black;
+    border-radius: 15px;
+    height:10vh;
+    width:10vh;
+}
 #button_jeuxvid{
     /* position: absolute; */
     background-color: rgb(79, 39, 158);
