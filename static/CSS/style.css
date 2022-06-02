@@ -243,6 +243,10 @@ body{
     font-family: 'Pokemon';
     src: url("../CSS/Pokemon\ Classic.ttf");
 }
+@font-face {
+    font-family: 'GreconianRegular';
+    src: url("../CSS/Greconian.ttf");
+}
 
 @keyframes shake {
     0% { transform: translate(0, 0) rotate(0); }
