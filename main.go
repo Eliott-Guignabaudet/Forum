@@ -11,6 +11,7 @@ func main() {
 	db := Forum.InitDatabase("ForumDB.db")
 	register := template.Must(template.ParseFiles("HTML/inscription.html"))
 	Home := template.Must(template.ParseFiles("HTML/Accueil.html"))
+	postsCreation := template.Must(template.ParseFiles("HTML/CreationPosts.html"))
 	login := template.Must(template.ParseFiles("HTML/connexion.html"))
 	defer db.Close()
 	fmt.Println("test")
@@ -29,14 +30,16 @@ func main() {
 		password := r.FormValue("Password")
 
 		Forum.InsertIntoUsers(db, name, email, password)
-		// Forum.InsertIntoUsers(db , "Mathieu" , "Mathieu@gmail.com" , "abcde")
-		// Forum.InsertIntoUsers(db , "Lucas" , "Lulu@gmail.com" , "klmno")
 
 		// http.Redirect(rw , r , "/" , http.StatusFound)
 	})
 
 	http.HandleFunc("/login", func(rw http.ResponseWriter, r *http.Request) {
 		login.Execute(rw, nil)
+	})
+
+	http.HandleFunc("/CreationPosts", func(rw http.ResponseWriter, r *http.Request) {
+		postsCreation.Execute(rw, nil)
 	})
 
 	fmt.Println("test1")

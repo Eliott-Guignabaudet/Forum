@@ -24,18 +24,43 @@
         <button class="buttontheme" id="button_environement">Environnement</button>
         <button class="buttontheme" id="button_sport">Sport</button>
         <button class="buttontheme" id="button_tech">Technologie</button>
-        <button class="buttontheme" id="button_jeuxvid">Jeux Vidéo</button></div>
-        <div id="theme">
-        <button class="buttontheme" id="button_saféréfléchir">Réflexion</button>
-        <button class="buttontheme" id="button_music">musique</button>
-        <button class="buttontheme" id="button_humour">humour</button>
-        <button class="buttontheme" id="button_autre">Autre</button></div>
-      </div>
-      <div id="theme">
-        <a href="/CreationPosts"><button id="button_createPost">Nouveau Post</button></a>
-      </div>
-      <div id="allpost">
-        <div class="post"></div></div>
+        <button class="buttontheme" id="button_jeuxvid">Jeux Vidéo</button>
+        <button class="buttontheme" id="button_saféréfléchir">Safé raifléchirr</button>
+        <button class="buttontheme" id="button_music">musik</button>
+        <button class="buttontheme" id="button_humour">gigadrol</button>
+        <button class="buttontheme" id="button_autre">Autre</button>
+        
+        <a href="#popupPosts">
+            <button id="button_createPost" >Créer un post</button>
+        </a>
+        
+
+        <div id="popupPosts" class="overlay">
+
+          <div class="popup">
+
+              <input type="text" id="postTitle" type="search" placeholder="Titre du post" required>
+              <textarea name="contentPost" id="contentPost" cols="30" rows="10" placeholder="Ecrivez quelque chose" required></textarea>
+              <label for="theme-select">Choisis un theme:</label>
+              <select id="theme-select">
+                  <option value="">--Choississez un theme--</option>
+                  <option value="Environnement">Environnement</option>
+                  <option value="Sport">Sport</option>
+                  <option value="Technologie">Technologie</option>
+                  <option value="Jeux-Vidéo">Jeux Vidéo</option>
+                  <option value="Humour">Humour</option>
+                  <option value="Réflexion">Réflexion</option>
+                  <option value="Musique">Musique</option>
+                  <option value="Autre">Autre</option>
+              </select>
+          <!-- <img src="https://imgs.search.brave.com/W5Jx9PoAGPldnFMCYdhiNf3Cty0hAjqOehupN73WO1U/rs:fit:800:720:1/g:ce/aHR0cDovL3BuZ2lt/Zy5jb20vdXBsb2Fk/cy9wb2tlYmFsbC9w/b2tlYmFsbF9QTkcz/My5wbmc" alt="Envoyer" id="ball_envoyer"> -->
+          <button onclick="OnclickCreatePost()">Envoyer</button>
+          <a href="" class="cross">&times;</a>
+          </div>
+        </div>
+
+
+    
         <script src="/static/JS/main.js"></script>
     </body>
     </html>
