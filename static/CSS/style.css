@@ -5,9 +5,6 @@ body{
     padding: 0%;
     background-color: #fcd752;
 }
-
-
-
 .logo{
     height: 110px;
     width: 130px;
@@ -103,7 +100,7 @@ body{
 #theme{
     display:flex;
     justify-content: center;
-    align-items: center;
+    align-items: space-around;
     text-align: center;
     row-gap: 2;
     height: auto;
@@ -157,13 +154,8 @@ body{
 }
 
 #button_autre{
-<<<<<<< Updated upstream
     /* position: absolute; */
     background-color: rgb(166, 249, 238);
-=======
-    position: absolute;
-    background-color: rgb(0, 0, 0);
->>>>>>> Stashed changes
     border-radius: 50px;
     font-size: 15px;
     font-family: "Pokemon";
@@ -211,15 +203,11 @@ body{
     top: 30%;
 }
 
-<<<<<<< Updated upstream
 #post{
     margin-top:5%;
     display:flex;
     justify-content: center;
 }
-=======
-
->>>>>>> Stashed changes
 
 #button_createPost{
     margin-top:5%;
@@ -237,13 +225,11 @@ body{
 }
 
 #contentPost{
-    position: absolute;
     height: 300px;
     width: 600px;
     resize: none;
 }
 #ball_envoyer{
-    position: absolute;
     height: 100px;
     width: 110px;
 }
