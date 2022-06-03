@@ -14,7 +14,6 @@ func main() {
 	postsCreation := template.Must(template.ParseFiles("HTML/CreationPosts.html"))
 	login := template.Must(template.ParseFiles("HTML/connexion.html"))
 	defer db.Close()
-	fmt.Println("test")
 
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 		Home.Execute(rw, nil)
@@ -37,15 +36,15 @@ func main() {
 	http.HandleFunc("/login", func(rw http.ResponseWriter, r *http.Request) {
 		login.Execute(rw, nil)
 	})
+	http.HandleFunc("/GetPosts", Forum.GetPostHandlefunc)
+	http.HandleFunc("/CreatePost", Forum.AddPostHandlefunc)
 
 	http.HandleFunc("/CreationPosts", func(rw http.ResponseWriter, r *http.Request) {
 		postsCreation.Execute(rw, nil)
 	})
-
-	fmt.Println("test1")
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
-	fmt.Println("test2")
+	fmt.Println("Start Server")
 	http.ListenAndServe(":8080", nil)
-	fmt.Println("test3")
+
 }

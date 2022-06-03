@@ -17,9 +17,10 @@ function OnclickCreatePost(){
             "content-type": "application/json"
         },
         body: JSON.stringify({
-            postTitle: document.getElementById("postTitle").value,
-            postContent: document.getElementById("contentPost").value,
-            postTheme: document.getElementById("theme-select").value
+            userId : 1,
+            title: document.getElementById("postTitle").value,
+            content: document.getElementById("contentPost").value,
+            category: document.getElementById("theme-select").value
         })
     })
 }

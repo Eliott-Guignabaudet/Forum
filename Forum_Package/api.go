@@ -1,48 +1,63 @@
 package Forum
 
 import (
-	"database/sql"
-	"log"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func InitDatabase(database string) *sql.DB {
-	db, err := sql.Open("sqlite3", database)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	sqlStmt := `
-							PRAGMA foreign_keys = ON;
-							CREATE TABLE IF NOT EXISTS users (
-								id INTEGER PRIMARY KEY AUTOINCREMENT,
-								name TEXT NOT NULL,
-								email TEXT NOT NULL UNIQUE,
-								password TEXT NOT NULL
-							);
-
-							CREATE TABLE IF NOT EXISTS posts (
-								id INTEGER PRIMARY KEY AUTOINCREMENT,
-								user_id INTEGER NOT NULL,
-								content TEXT NOT NULL,
-								FOREIGN KEY (user_id) REFERENCES users(id)
-							);
-						 `
-	_, err = db.Exec(sqlStmt)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-	return db
+type Post struct {
+	Id       int
+	UserId   int
+	Category string
+	Title    string
+	Content  string
 }
 
-func InsertIntoUsers(db *sql.DB, name string, email string, password string) (int64, error) {
-	result, _ := db.Exec(`INSERT INTO users (name , email , password) VALUES (? , ? , ?) `, name, email, password)
-	return result.LastInsertId()
+func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
+	var posts []Post
+	body, _ := ioutil.ReadAll(r.Body)
+	json.Unmarshal(body, &posts)
+	posts = tranlateSQLrowPosts(selectAllFromTable("posts"))
+	jsonPosts, _ := json.Marshal(posts)
+	fmt.Println(string(jsonPosts))
 }
 
-func insertIntoPosts(db *sql.DB, user_id int, content string) (int64, error) {
-	result, _ := db.Exec(`INSERT INTO posts (user_id , content) VALUES (?,?) `, user_id, content)
-	return result.LastInsertId()
+func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
+	var post Post
+
+	if r.Method != "POST" {
+		// page d'erreur
+		fmt.Println("erreur methode : ", r.Method)
+		return
+	}
+
+	body, _ := ioutil.ReadAll(r.Body)
+	fmt.Println(string(body))
+	err := json.Unmarshal(body, &post)
+	if err != nil {
+		println("ERREUR : ", err)
+	}
+	fmt.Println(post)
+	if post.Title == "" {
+		// erreur titre vide
+		fmt.Println(post)
+		fmt.Println("titre vide")
+		w.Write([]byte("{\"error\":\"titre vide\"}"))
+	} else if post.Content == "" {
+		// erreur contenu vide
+		fmt.Println("contenu vide")
+		w.Write([]byte("{\"error\":\"contenu vide\"}"))
+	} else if post.Category == "" {
+		// erreur contenu vide
+		fmt.Println("contenu vide")
+		w.Write([]byte("{\"error\":\"contenu vide\"}"))
+	} else {
+		fmt.Println("good")
+		addPost(post)
+	}
+
 }
