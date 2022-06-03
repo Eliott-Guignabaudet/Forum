@@ -40,13 +40,12 @@
 
         <div id="popupPosts" class="overlay">
 
-          <div class="popup">
-
-              <input type="text" id="postTitle" type="search" placeholder="Titre du post" required>
-              <textarea name="contentPost" id="contentPost" cols="30" rows="10" placeholder="Ecrivez quelque chose" required></textarea>
-              <label for="theme-select">Choisis un theme:</label>
-              <select id="theme-select">
-                  <option value="">--Choississez un theme--</option>
+          <div class="popup" class="alignementpost">
+              <input type="text" id="postTitle" type="search" placeholder="Titre du post" required><a href="" class="cross"><button class="fermer">&times;</button></a>
+              <textarea name="contentPost" id="contentPost" cols="30" rows="10" placeholder="Ecrivez quelque chose" required ></textarea>
+              <label for="theme-select" class="alignementpost">Choisis un theme:</label>
+              <select  id="theme-select">
+                  <option id="" value="">--Choississez un theme--</option>
                   <option value="Environnement">Environnement</option>
                   <option value="Sport">Sport</option>
                   <option value="Technologie">Technologie</option>
@@ -57,8 +56,8 @@
                   <option value="Autre">Autre</option>
               </select>
           <!-- <img src="https://imgs.search.brave.com/W5Jx9PoAGPldnFMCYdhiNf3Cty0hAjqOehupN73WO1U/rs:fit:800:720:1/g:ce/aHR0cDovL3BuZ2lt/Zy5jb20vdXBsb2Fk/cy9wb2tlYmFsbC9w/b2tlYmFsbF9QTkcz/My5wbmc" alt="Envoyer" id="ball_envoyer"> -->
-          <button onclick="OnclickCreatePost()">Envoyer</button>
-          <a href="" class="cross">&times;</a>
+          <div class="envoyerpost"><button id="envoyer" onclick="OnclickCreatePost()">Envoyer</button></div>
+          
           </div>
         </div>
 

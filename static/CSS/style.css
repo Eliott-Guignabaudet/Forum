@@ -152,7 +152,16 @@ body{
     left: 20%;
     top: 30%;
 }
-
+.envoyerpost{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 20vh;
+}
+#envoyer{
+    height: 10vh;
+    width: 20vh;
+}
 #button_autre{
     /* position: absolute; */
     background-color: rgb(166, 249, 238);
@@ -223,10 +232,14 @@ body{
     height: 80px;
     width: 300px;
 }
-
+.alignementpost{
+    display:flex;
+    justify-content: space-around;
+}
 #contentPost{
-    height: 300px;
-    width: 600px;
+    height: auto;
+    min-height: 60%;
+    width: 80%;
     resize: none;
 }
 #ball_envoyer{
@@ -236,7 +249,20 @@ body{
 #ball_envoyer:hover{
     animation: shake 1.25s cubic-bezier(.36,.07,.19,.97)  infinite; 
 }
+.cross{
+    position: absolute;
+    left:90%
 
+}
+.fermer{
+    background-color:red ;
+    color: white;
+    border:2px red;
+    border-radius: 30%;
+    text-align: center;
+    width:2.5vw;
+    height: 5vh;
+}
 
 .overlay{
     position: fixed;
