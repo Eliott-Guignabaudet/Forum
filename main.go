@@ -8,38 +8,24 @@ import (
 )
 
 func main() {
-	db := Forum.InitDatabase("ForumDB.db")
-	register := template.Must(template.ParseFiles("HTML/inscription.html"))
+	// db := Forum.InitDatabase("ForumDB.db")
+	register , _ := template.ParseFiles("HTML/inscription.html")
 	Home := template.Must(template.ParseFiles("HTML/Accueil.html"))
-	postsCreation := template.Must(template.ParseFiles("HTML/CreationPosts.html"))
-	login := template.Must(template.ParseFiles("HTML/connexion.html"))
-	defer db.Close()
+	login , _ := template.ParseFiles("HTML/connexion.html")
+	// defer db.Close()
 	fmt.Println("test")
 
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 		Home.Execute(rw, nil)
 	})
-
-	http.HandleFunc("/register", func(rw http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodPost {
-			register.Execute(rw, nil)
-			return
-		}
-		name := r.FormValue("Name")
-		email := r.FormValue("Email")
-		password := r.FormValue("Password")
-
-		Forum.InsertIntoUsers(db, name, email, password)
-
-		// http.Redirect(rw , r , "/" , http.StatusFound)
+	
+	http.HandleFunc("/registerPage" , func(rw http.ResponseWriter , r * http.Request) {
+		register.Execute(rw , nil)
 	})
+	http.HandleFunc("/register" , Forum.Register)
 
-	http.HandleFunc("/login", func(rw http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/loginPage", func(rw http.ResponseWriter, r *http.Request) {
 		login.Execute(rw, nil)
-	})
-
-	http.HandleFunc("/CreationPosts", func(rw http.ResponseWriter, r *http.Request) {
-		postsCreation.Execute(rw, nil)
 	})
 
 	fmt.Println("test1")

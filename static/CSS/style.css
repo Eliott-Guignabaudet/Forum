@@ -81,6 +81,7 @@ h1{
     border: 2px solid black;
 }
 .inscr{
+    display: block;
     background-color: #fcd752;
     border: 1px solid black;
     border-radius: 15px;
