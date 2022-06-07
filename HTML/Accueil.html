@@ -6,34 +6,132 @@
     <body>
         <div id="navbar">
             <div class="logo">
+             <a href="/"> <button class="boutonlogo">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 731.92 505.63"><defs><style>.cls-1,.cls-7{fill:#ccd7de;}.cls-2{fill:#e30613;}.cls-3,.cls-6{fill:#99abb4;}.cls-3{opacity:0.28;}.cls-4{fill:#fff;}.cls-5{fill:#1d1d1b;}.cls-7{font-size:152.6px;font-family:GreconianRegular, Greconian;letter-spacing:-0.07em;}.cls-8{letter-spacing:0em;}</style></defs><g id="V1"><rect class="cls-1" x="34.81" y="210.24" width="663.86" height="262.26" rx="39.29"/><circle class="cls-1" cx="362.47" cy="233.6" r="198.34"/><circle class="cls-2" cx="363.03" cy="237.56" r="171.39"/><circle class="cls-3" cx="363.03" cy="237.56" r="171.39"/><circle class="cls-4" cx="363.03" cy="237.56" r="49.45"/><circle class="cls-5" cx="363.03" cy="237.56" r="27.32"/><rect class="cls-6" x="62.52" y="237.56" width="603.61" height="197.59"/><text class="cls-7" transform="translate(107.13 390.18)">A<tspan class="cls-8" x="104.38" y="0">GORA</tspan></text></g></svg>
-            </div>
+            </button></a></div>
             <div class="searchbar">
             <input type="text" placeholder="Search.." class="recherche">
             </div>
             <div class="compte">
               <div class="inscriptionConnexion">
-            <a href="/register" ><button class="inscr">Inscription</button></a>	
-            <a href="/login" ><button class="inscr">Connexion</button></a>	
+            <a href="/register" ><button class="inscr" id="inscription">Inscription</button></a>	
+            <a href="/login" ><button class="inscr" id="connexion">Connexion</button></a>
           </div>
             <a href="profil.html"><button class="profil"></button>
                 </a>
             </div>
         </div>
+        <div id="theme">
         <button class="buttontheme" id="button_environement">Environnement</button>
         <button class="buttontheme" id="button_sport">Sport</button>
         <button class="buttontheme" id="button_tech">Technologie</button>
-        <button class="buttontheme" id="button_jeuxvid">Jeux Vidéo</button>
-        <button class="buttontheme" id="button_saféréfléchir">Safé raifléchirr</button>
-        <button class="buttontheme" id="button_music">musik</button>
-        <button class="buttontheme" id="button_humour">gigadrol</button>
+        <button class="buttontheme" id="button_jeuxvideo">Jeux Vidéo</button>
+      </div>
+        <div id="theme">
+        <button class="buttontheme" id="button_reflexion">Réfléxion</button>
+        <button class="buttontheme" id="button_music">Musique</button>
+        <button class="buttontheme" id="button_humour">Humour</button>
         <button class="buttontheme" id="button_autre">Autre</button>
-        
-        <a href="/CreationPosts">
-            <button id="button_createPost" >Créer un giga/petit post</button>
+        </div>
+        <div id="theme">
+        <a href="#popupPosts">
+            <button id="button_createPost" >Créer un post</button>
         </a>
         
+        </div>
+
+<div class="post">
+  <div style="width:90vw;background-color: #31383f;display:flex;flex-wrap:wrap;justify-content: center;">
+    <div class="posts">
+        <h1>Salut</h1>
+        <p >Bonjour ceci est un test</p>
+        <div class="reaction">
+        <div class=" background-color: beige;border-radius: 10px;display:flex;justify-content:space-around"><button>❤️</button><button>Commentaire</button></div>
+      </div>
+    </div>
+    <div class="posts">
+      <h1>Hallo</h1>
+      <p >Bonjour ceci est un test</p>
+      <div class="reaction">
+      <div class=" background-color: beige;border-radius: 10px;display:flex;justify-content:space-around"><button>❤️</button><button>Commentaire</button></div>
+    </div>
+  </div>
+    <div class="posts">
+      <h1>Salut</h1>
+      <p >Bonjour ceci est un test</p>
+      <div class="reaction">
+      <div class=" background-color: beige;border-radius: 10px;display:flex;justify-content:space-around"><button>❤️</button><button>Commentaire</button></div>
+    </div>
+  </div>
+  <div class="posts">
+    <h1>Salut</h1>
+    <p >Bonjour ceci est un test</p>
+    <div class="reaction">
+    <div class=" background-color: beige;border-radius: 10px;display:flex;justify-content:space-around"><button>❤️</button><button>Commentaire</button></div>
+  </div>
+</div>
+<div class="posts">
+  <h1>Salut</h1>
+  <p >Bonjour ceci est un test</p>
+  <div class="reaction">
+  <div class=" background-color: beige;border-radius: 10px;display:flex;justify-content:space-around"><button>❤️</button><button>Commentaire</button></div>
+</div>
+</div>
+    <div class="posts">
+      <h1>Hello</h1>
+        <p>Hello this is a test</p>
+        <div class="reaction">
+          <div class=" background-color: beige;border-radius: 10px;display:flex;justify-content:space-around"><button>❤️</button><button>Commentaire</button></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+        <div id="popupPosts" class="overlay">
+          <div class="popup" class="alignementpost">
+            <input type="text" id="postTitle" type="search" placeholder="Titre du post" required><a href="" class="cross"><button class="fermer">&times;</button></a>
+            <textarea name="contentPost" id="contentPost" cols="30" rows="10" placeholder="Ecrivez quelque chose" required ></textarea>
+            <label for="theme-select" class="alignementpost">Choisis un theme:</label>
+            <select  id="theme-select">
+                <option id="" value="">--Choississez un theme--</option>
+                <option value="Environnement">Environnement</option>
+                <option value="Sport">Sport</option>
+                <option value="Technologie">Technologie</option>
+                <option value="Jeux-Vidéo">Jeux Vidéo</option>
+                <option value="Humour">Humour</option>
+                <option value="Réflexion">Réflexion</option>
+                <option value="Musique">Musique</option>
+                <option value="Autre">Autre</option>
+            </select>
+        <!-- <img src="https://imgs.search.brave.com/W5Jx9PoAGPldnFMCYdhiNf3Cty0hAjqOehupN73WO1U/rs:fit:800:720:1/g:ce/aHR0cDovL3BuZ2lt/Zy5jb20vdXBsb2Fk/cy9wb2tlYmFsbC9w/b2tlYmFsbF9QTkcz/My5wbmc" alt="Envoyer" id="ball_envoyer"> -->
+        <div class="envoyerpost"><button id="envoyer" onclick="OnclickCreatePost()">Envoyer</button></div>
+        
+        </div>
+          <div class="popup" class="alignementpost">
+              <input type="text" id="postTitle" type="search" placeholder="Titre du post" required><a href="" class="cross"><button class="fermer">&times;</button></a>
+              <textarea name="contentPost" id="contentPost" cols="30" rows="10" placeholder="Ecrivez quelque chose" required ></textarea>
+              <label for="theme-select" class="alignementpost">Choisis un theme:</label>
+              <select  id="theme-select">
+                  <option id="" value="">--Choississez un theme--</option>
+                  <option value="Environnement">Environnement</option>
+                  <option value="Sport">Sport</option>
+                  <option value="Technologie">Technologie</option>
+                  <option value="Jeux-Vidéo">Jeux Vidéo</option>
+                  <option value="Humour">Humour</option>
+                  <option value="Réflexion">Réflexion</option>
+                  <option value="Musique">Musique</option>
+                  <option value="Autre">Autre</option>
+              </select>
+          <!-- <img src="https://imgs.search.brave.com/W5Jx9PoAGPldnFMCYdhiNf3Cty0hAjqOehupN73WO1U/rs:fit:800:720:1/g:ce/aHR0cDovL3BuZ2lt/Zy5jb20vdXBsb2Fk/cy9wb2tlYmFsbC9w/b2tlYmFsbF9QTkcz/My5wbmc" alt="Envoyer" id="ball_envoyer"> -->
+          <div class="envoyerpost"><button id="envoyer" onclick="OnclickCreatePost()">Envoyer</button></div>
+          
+          </div>
+          
+        </div>
+        
+
+
     
         <script src="/static/JS/main.js"></script>
-
     </body>
+    </html>

@@ -1,18 +1,42 @@
 body{
-    height: 100%;
-    width: 100%;
-    margin: 0%;
-    padding: 0%;
     background-color: #fcd752;
+    padding:0;
+    margin:0;
+    height: max-content;
 }
-
-
-
+h1{
+    margin-top: 1%;
+    text-align: center;
+    background-color: beige;
+    border-radius: 10px;
+}
+.reaction{
+    height: 30%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around; 
+}
+.posts{
+    margin: 1%;
+    border-radius: 10px;
+}
 .logo{
     height: 110px;
+    min-height: 110px;
     width: 130px;
+    min-width: 130px;
+}
+.boutonlogo{
+    background-color: #31383f;
+    border:2px #31383f;
+}
+.posts{
+    height: 20vh;
+    width: 20vw;
+    background-color: white;
 }
 #navbar{
+    padding-top: 0.5%;
     background-color: #31383f;
     height: 105px;
     width: 100%;  
@@ -46,6 +70,8 @@ body{
         background-size: 100%;
     }
     .inscription{
+        height: 100vh;
+        width:100vw;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -61,30 +87,6 @@ body{
     height:5vh;
     width:10vh;
 }
-.Retour{
-    background-color: #fcd752;
-    border: 1px solid black;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:10vh;
-    width:20vh;
-}
-#retour{
-    height: 30vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    /* background-color: rgb(32, 52, 90); */
-    /* background-color: #01d758; */
-    /* background-color: #2b262d; */
-    background-color: #31383f;
-    height: 90px;
-    width: 100%;
-    border-radius: 35px;
-}
 
 #themebar{
     position: absolute;
@@ -93,7 +95,7 @@ body{
 }
 
 #button_environement{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(41, 160, 41);
     border-radius: 50px;
     font-size: 15px;
@@ -105,9 +107,14 @@ body{
     left: 20%;
     top: 20%;
 }
+#allpost{
+    margin-top:3%;
+    display: flex;
+    justify-content: center;
+}
 
 #button_sport{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(160, 92, 41);
     border-radius: 50px;
     font-size: 20px;
@@ -119,9 +126,16 @@ body{
     left: 35%;
     top: 20%;
 }
-
+#theme{
+    display:flex;
+    justify-content: center;
+    align-items: space-around;
+    text-align: center;
+    row-gap: 2;
+    height: auto;
+}
 #button_tech{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(125, 143, 144);
     border-radius: 50px;
     font-size: 19px;
@@ -130,11 +144,18 @@ body{
     outline:2px #31383f;
     height: 50px;
     width: 200px;
-    left: 50%;
-    top: 20%;
 }
-#button_jeuxvid{
-    position: absolute;
+.jeu{
+    background-image: url("../CSS/528088.png");
+    background-size:100%;
+    background-color: #fcd752;
+    border: 1px solid black;
+    border-radius: 15px;
+    height:10vh;
+    width:10vh;
+}
+#button_jeuxvideo{
+    /* position: absolute; */
     background-color: rgb(79, 39, 158);
     border-radius: 50px;
     font-size: 19px;
@@ -147,8 +168,8 @@ body{
     top: 20%;
 }
 
-#button_saféréfléchir{
-    position: absolute;
+#button_reflexion{
+    /* position: absolute; */
     background-color: rgb(160, 41, 148);
     border-radius: 50px;
     font-size: 15px;
@@ -160,23 +181,29 @@ body{
     left: 20%;
     top: 30%;
 }
-
+.envoyerpost{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 20vh;
+}
+#envoyer{
+    height: 10vh;
+    width: 20vh;
+}
 #button_autre{
-    position: absolute;
-    background-color: rgb(166, 249, 238);
+    background-color: white;
     border-radius: 50px;
     font-size: 15px;
     font-family: "Pokemon";
-    color: beige;
+    color: black;
     outline:2px #31383f;
     height: 50px;
     width: 200px;
-    left: 65%;
-    top: 30%;
 }
 
 #button_music{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(59, 14, 55);
     border-radius: 50px;
     font-size: 15px;
@@ -188,9 +215,17 @@ body{
     left: 50%;
     top: 30%;
 }
-
+.buttontheme{
+    margin: 1%;
+}
+.post{
+    margin: 1%;
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
 #button_humour{
-    position: absolute;
+    /* position: absolute; */
     background-color: rgb(224, 20, 207);
     border-radius: 50px;
     font-size: 15px;
@@ -204,13 +239,17 @@ body{
 }
 
 #post{
-    position: absolute;
-    top: 20%;
-    left: 20%;
+    margin-top:5%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #button_createPost{
-    position: absolute;
+    margin-top:5%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(172, 62, 62);
     border-radius: 50px;
     font-size: 15px;
@@ -219,26 +258,68 @@ body{
     outline:2px #31383f;
     height: 80px;
     width: 300px;
-    left: 40%;
-    top: 50%;
 }
-
+.alignementpost{
+    display:flex;
+    justify-content: space-around;
+}
 #contentPost{
-    position: absolute;
-    height: 300px;
-    width: 600px;
+    height: auto;
+    min-height: 60%;
+    width: 80%;
     resize: none;
 }
 #ball_envoyer{
-    position: absolute;
     height: 100px;
     width: 110px;
 }
 #ball_envoyer:hover{
     animation: shake 1.25s cubic-bezier(.36,.07,.19,.97)  infinite; 
 }
+.cross{
+    position: absolute;
+    left:90%
 
+}
+.fermer{
+    background-color:red ;
+    color: white;
+    border:2px red;
+    border-radius: 30%;
+    text-align: center;
+    width:2.5vw;
+    height: 5vh;
+}
 
+.overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity .4s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target{
+    visibility: visible;
+    opacity: 1;
+
+}
+
+.popup{
+    text-align: center;
+    margin: 6rem auto;
+    padding: 2rem;
+    background: #fcd752;
+    border-radius: 5px;
+    width: 45%;
+    height: 75%;
+    position: relative;
+    transition: all 0.4s ease-in-out;
+}
 @font-face {
     font-family: 'Pokemon';
     src: url("../CSS/Pokemon\ Classic.ttf");
