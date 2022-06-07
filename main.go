@@ -7,11 +7,12 @@ import (
 	"net/http"
 )
 
+//idActualUser := 0 //si 0 cela veut dire que il n'y a pas d'utilisateur
+
 func main() {
 	db := Forum.InitDatabase("ForumDB.db")
 	register, _ := template.ParseFiles("HTML/inscription.html")
 	Home := template.Must(template.ParseFiles("HTML/Accueil.html"))
-	postsCreation := template.Must(template.ParseFiles("HTML/CreationPosts.html"))
 	login := template.Must(template.ParseFiles("HTML/connexion.html"))
 	defer db.Close()
 
@@ -30,9 +31,6 @@ func main() {
 	http.HandleFunc("/GetPosts", Forum.GetPostHandlefunc)
 	http.HandleFunc("/CreatePost", Forum.AddPostHandlefunc)
 
-	http.HandleFunc("/CreationPosts", func(rw http.ResponseWriter, r *http.Request) {
-		postsCreation.Execute(rw, nil)
-	})
 	fmt.Println("test1")
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))

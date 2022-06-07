@@ -16,6 +16,13 @@ type Post struct {
 	Title    string
 	Content  string
 }
+type UserParams struct {
+	Id        int
+	Pseudo    string
+	Email     string
+	Password  string
+	ConfirmPW string
+}
 
 func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	var posts []Post
@@ -25,14 +32,6 @@ func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	jsonPosts, _ := json.Marshal(posts)
 	w.Write(jsonPosts)
 	fmt.Println(string(jsonPosts))
-}
-
-type UserParams struct {
-	Id        int
-	Pseudo    string `json:Pseudo`
-	Email     string `json:Email`
-	Password  string `json:Password`
-	ConfirmPW string `json:ConfirmPW`
 }
 
 func Register(rw http.ResponseWriter, r *http.Request) {
@@ -116,9 +115,3 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 		addPost(post)
 	}
 }
-
-// func selectUsersByEmail(db *sql.DB , email string) UserParams {
-// 	var user UserParams
-// 	db.QueryRow(`SELECT * FROM users WHERE email = ?` , email).Scan(&user.Id , &user.Name , &user.Email , &user.Password)
-// 	return user.Id
-// }

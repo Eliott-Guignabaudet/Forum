@@ -15,9 +15,23 @@ fetch("/GetPosts")
 .then((json) => {
     console.log("response", json)
 })
+
+let idActualUser = 0 
+   
+   
+   fetch("")
+    .then((res) => {
+        return res.json
+    })
+    .then((data) => {
+        console.log(data)
+    }) 
+
+
   
 function OnclickCreatePost(){
-    console.log("OnclickCreatepost : OK")
+    if (idActualUser != 0){
+        console.log("OnclickCreatepost : OK")
     fetch("/CreatePost", {
         method: "POST",
         headers: {
@@ -30,4 +44,17 @@ function OnclickCreatePost(){
             category: document.getElementById("theme-select").value
         })
     })
+    .then((res) => {
+        res.json()
+    })
+    .then((data) => {
+        if (!!data.error){
+            document.getElementById("errorPost").innerText = data.error
+            return
+        }
+    })
+    }else{
+        console.log("nop")
+    }
+    
 }
