@@ -27,6 +27,61 @@ func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(string(jsonPosts))
 }
 
+type UserParams struct {
+	Id        int
+	Pseudo    string `json:Pseudo`
+	Email     string `json:Email`
+	Password  string `json:Password`
+	ConfirmPW string `json:ConfirmPW`
+}
+
+func Register(rw http.ResponseWriter, r *http.Request) {
+	var User UserParams
+	// isTrue := true
+	db := InitDatabase("ForumDB.db")
+	defer db.Close()
+	body, _ := ioutil.ReadAll(r.Body)
+	json.Unmarshal(body, &User)
+
+	//Check si tous les champs sont good
+	if User.Pseudo == "" {
+		fmt.Println("testGO")
+		rw.Write([]byte("{\"errorPseudo\" : \"Pseudo nécessaire\"}"))
+		return
+	}
+
+	if User.Email == "" {
+		fmt.Println("testGO1")
+		rw.Write([]byte("{\"errorEmail\" : \"Email requis.\"}"))
+		return
+	}
+
+	if User.Password == "" {
+		fmt.Println("testGO2")
+		rw.Write([]byte("{\"errorPassword\" : \"password requis.\"}"))
+		return
+	}
+
+	if User.ConfirmPW == "" && User.Password != "" {
+		fmt.Println("testGO3")
+		rw.Write([]byte("{\"errorConfirmPW\" : \"confirmation du mot de passe nécessaire.\"}"))
+		return
+	}
+
+	if User.ConfirmPW != User.Password {
+		fmt.Println("testGO4")
+		rw.Write([]byte("{\"errorNotSamePW\" : \"Le mot de passe n'est pas le même.\"}"))
+		return
+	}
+
+	//insert into
+	InsertIntoUsers(db, User.Pseudo, User.Email, User.Password)
+}
+
+// func Login(rw , http.ResponseWriter , r *http.Request) {
+
+// }
+
 func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	var post Post
 
@@ -60,5 +115,10 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("good")
 		addPost(post)
 	}
-
 }
+
+// func selectUsersByEmail(db *sql.DB , email string) UserParams {
+// 	var user UserParams
+// 	db.QueryRow(`SELECT * FROM users WHERE email = ?` , email).Scan(&user.Id , &user.Name , &user.Email , &user.Password)
+// 	return user.Id
+// }

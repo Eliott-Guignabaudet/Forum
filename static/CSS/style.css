@@ -1,18 +1,42 @@
 body{
-    height: 100%;
-    width: 100%;
-    margin: 0%;
-    padding: 0%;
     background-color: #fcd752;
+    padding:0;
+    margin:0;
+    height: max-content;
 }
-
-
-
+h1{
+    margin-top: 1%;
+    text-align: center;
+    background-color: beige;
+    border-radius: 10px;
+}
+.reaction{
+    height: 30%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around; 
+}
+.posts{
+    margin: 1%;
+    border-radius: 10px;
+}
 .logo{
     height: 110px;
+    min-height: 110px;
     width: 130px;
+    min-width: 130px;
+}
+.boutonlogo{
+    background-color: #31383f;
+    border:2px #31383f;
+}
+.posts{
+    height: 20vh;
+    width: 20vw;
+    background-color: white;
 }
 #navbar{
+    padding-top: 0.5%;
     background-color: #31383f;
     height: 105px;
     width: 100%;  
@@ -46,6 +70,8 @@ body{
         background-size: 100%;
     }
     .inscription{
+        height: 100vh;
+        width:100vw;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -55,6 +81,7 @@ body{
     border: 2px solid black;
 }
 .inscr{
+    display: block;
     background-color: #fcd752;
     border: 1px solid black;
     border-radius: 15px;
@@ -103,7 +130,7 @@ body{
 #theme{
     display:flex;
     justify-content: center;
-    align-items: center;
+    align-items: space-around;
     text-align: center;
     row-gap: 2;
     height: auto;
@@ -128,7 +155,7 @@ body{
     height:10vh;
     width:10vh;
 }
-#button_jeuxvid{
+#button_jeuxvideo{
     /* position: absolute; */
     background-color: rgb(79, 39, 158);
     border-radius: 50px;
@@ -142,7 +169,7 @@ body{
     top: 20%;
 }
 
-#button_saféréfléchir{
+#button_reflexion{
     /* position: absolute; */
     background-color: rgb(160, 41, 148);
     border-radius: 50px;
@@ -155,19 +182,26 @@ body{
     left: 20%;
     top: 30%;
 }
-
+.envoyerpost{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 20vh;
+}
+#envoyer{
+    height: 10vh;
+    width: 20vh;
+}
 #button_autre{
     /* position: absolute; */
     background-color: rgb(166, 249, 238);
     border-radius: 50px;
     font-size: 15px;
     font-family: "Pokemon";
-    color: beige;
+    color: black;
     outline:2px #31383f;
     height: 50px;
     width: 200px;
-    left: 65%;
-    top: 30%;
 }
 
 #button_music{
@@ -187,6 +221,7 @@ body{
     margin: 1%;
 }
 .post{
+    margin: 1%;
     display: flex;
     justify-content: center;
     width:80vw;
@@ -210,6 +245,7 @@ body{
     margin-top:5%;
     display:flex;
     justify-content: center;
+    align-items: center;
 }
 
 #button_createPost{
@@ -226,7 +262,10 @@ body{
     height: 80px;
     width: 300px;
 }
-
+.alignementpost{
+    display:flex;
+    justify-content: space-around;
+}
 #contentPost{
     /* position: absolute; */
     height: 300px;
@@ -241,7 +280,20 @@ body{
 #ball_envoyer:hover{
     animation: shake 1.25s cubic-bezier(.36,.07,.19,.97)  infinite; 
 }
+.cross{
+    position: absolute;
+    left:90%
 
+}
+.fermer{
+    background-color:red ;
+    color: white;
+    border:2px red;
+    border-radius: 30%;
+    text-align: center;
+    width:2.5vw;
+    height: 5vh;
+}
 
 .overlay{
     position: fixed;
@@ -272,9 +324,6 @@ body{
     position: relative;
     transition: all 0.4s ease-in-out;
 }
-
-
-
 @font-face {
     font-family: 'Pokemon';
     src: url("../CSS/Pokemon\ Classic.ttf");
