@@ -9,17 +9,82 @@
           <div class="info">
       <h1>Inscription</h1>
     <form method="POST">
-      <label>Nom:</label><br />
-      <input type="text" name="Name"><br/>
+      <label>Pseudo:</label><br />
+      <input type="text" id="Pseudo"><br/>
+      <p id="errorPseudo" style="color: red"></p>
+
       <label>Email:</label><br />
-      <input type="text" name="Email"><br/>
+      <input type="text" id="Email"><br/>
+      <p id="errorEmail" style="color: red"></p>
+
       <label>Password:</label><br />
-      <input type="text" name="Password"><br/>
+      <input type="text" id="Password"><br/>
+      <p id="errorPassword" style="color: red"></p>
+
       <label>Confirmation:</label><br />
-      <input type="text" name="Password"><br/>
-      <input type="submit">
+      <input type="text" id="ConfirmPassword"><br/>
+      <p id="errorconfirmPW" style="color: red"></p>
+      <button type="button" onclick="onClickRegister()">S'inscrire</button>
+      <!-- <input onclick="onClickRegister()" type="button" value="S'inscrire"> -->
     </div>
   </form>
 </div>
+<script>
+  const onClickRegister = () => {
+    console.log("Click register")
+    fetch("/register" , {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        Pseudo: document.getElementById("Pseudo").value,
+        email: document.getElementById("Email").value,
+        password: document.getElementById("Password").value,
+        ConfirmPW: document.getElementById("ConfirmPassword").value,
+      })
+    }).then((res) => {
+      console.log("RES : ", res)
+      return res.json()
+    })
+    .then((data) => {
+      if(!!data.errorPseudo) {
+        document.getElementById("errorPseudo").innerText = data.errorPseudo
+        console.log("test")
+        return
+      }else {
+        document.getElementById("errorPseudo").innerText = ""
+      }
+      
+      if(!!data.errorEmail) {
+        document.getElementById("errorEmail").innerHTML = data.errorEmail
+        console.log("test2")
+        return
+      }else {
+        document.getElementById("errorEmail").innerHTML = ""
+      }
+
+      if(!!data.errorPassword) {
+        document.getElementById("errorPassword").innerHTML = data.errorPassword
+        console.log("test3")
+        return
+      }else {
+        document.getElementById("errorPassword").innerHTML= ""
+      }
+
+      if(!!data.errorConfirmPW) {
+        document.getElementById("errorConfirmPW").innerHTML = data.errorConfirmPW
+        console.log("test4")
+        return
+      }else {
+        document.getElementById("errorConfirmPW").innerHTML = ""
+      }
+
+      if(!!data.errorNotSamePW) {
+        document.getElementById("errorConfirmPW").innerHTML = data.errorNotSamePW
+      }
+    })
+  }
+</script>
   </body>
 </html>
