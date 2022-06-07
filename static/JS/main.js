@@ -1,13 +1,20 @@
 
-    document.getElementById("testPost").value = "yay"
-    fetch("")
-    .then((res) => {
-        return res.json
-    })
-    .then((data) => {
-        console.log(data)
-        document.getElementById("testPost").value = "yay"
-    }) 
+    // document.getElementById("testPost").value = "yay"
+    // fetch("")
+    // .then((res) => {
+    //     return res.json
+    // })
+    // .then((data) => {
+    //     console.log(data)
+    //     document.getElementById("testPost").value = "yay"
+    // }) 
+
+
+fetch("/GetPosts")
+.then((res) => res.json())
+.then((json) => {
+    console.log("response", json)
+})
   
 function OnclickCreatePost(){
     console.log("OnclickCreatepost : OK")

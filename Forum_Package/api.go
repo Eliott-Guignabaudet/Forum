@@ -23,6 +23,7 @@ func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(body, &posts)
 	posts = tranlateSQLrowPosts(selectAllFromTable("posts"))
 	jsonPosts, _ := json.Marshal(posts)
+	w.Write(jsonPosts)
 	fmt.Println(string(jsonPosts))
 }
 
@@ -54,7 +55,7 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	} else if post.Category == "" {
 		// erreur contenu vide
 		fmt.Println("contenu vide")
-		w.Write([]byte("{\"error\":\"contenu vide\"}"))
+		w.Write([]byte("{\"error\":\"aucune category\"}"))
 	} else {
 		fmt.Println("good")
 		addPost(post)
