@@ -10,7 +10,7 @@ import (
 //idActualUser := 0 //si 0 cela veut dire que il n'y a pas d'utilisateur
 
 func main() {
-	// db := Forum.InitDatabase("ForumDB.db")
+	Forum.InitDatabase("ForumDB.db")
 	register, _ := template.ParseFiles("HTML/inscription.html")
 	Home := template.Must(template.ParseFiles("HTML/Accueil.html"))
 	login := template.Must(template.ParseFiles("HTML/connexion.html"))
@@ -18,17 +18,17 @@ func main() {
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 		Home.Execute(rw, nil)
 	})
-	
-	http.HandleFunc("/registerPage" , func(rw http.ResponseWriter , r * http.Request) {
-		register.Execute(rw , nil)
+
+	http.HandleFunc("/registerPage", func(rw http.ResponseWriter, r *http.Request) {
+		register.Execute(rw, nil)
 	})
-	http.HandleFunc("/register" , Forum.Register)
+	http.HandleFunc("/register", Forum.Register)
 
 	http.HandleFunc("/loginPage", func(rw http.ResponseWriter, r *http.Request) {
 		login.Execute(rw, nil)
 	})
-	http.HandleFunc("/login" , Forum.Login) 
-	
+	http.HandleFunc("/login", Forum.Login)
+
 	http.HandleFunc("/GetPosts", Forum.GetPostHandlefunc)
 	http.HandleFunc("/CreatePost", Forum.AddPostHandlefunc)
 

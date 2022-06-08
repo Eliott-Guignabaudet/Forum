@@ -23,6 +23,8 @@ fetch("/GetPosts")
         const likeButton = document.createElement("button");
         const comentary = document.createElement("button");
 
+        console.log(element)
+
         newPost.className = "posts";
         title.textContent = element.Title;
         content.textContent = element.Content;
@@ -85,11 +87,14 @@ function OnclickCreatePost(){
         res.json()
     })
     .then((data) => {
-        if (!!data.error){
-            document.getElementById("errorPost").innerText = data.error
-            return
-        }
+        // console.log(data);
+
+        // if (!!data.error){
+        //     document.getElementById("errorPost").innerText = data.error
+        //     return
+        // }
     })
+    .catch((resp) => console.log(resp))
     }else{
         console.log("nop")
     }
