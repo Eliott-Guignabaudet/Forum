@@ -21,7 +21,7 @@
       <div class="inscription">
           <div class="info">
       <h1>Inscription</h1>
-    <form method="POST" action="/login">
+    <form method="POST">
       <label>Pseudo:</label><br />
       <input type="text" id="Pseudo"><br/>
       <p id="errorPseudo" style="color: red"></p>
@@ -38,13 +38,15 @@
       <input type="text" id="ConfirmPassword"><br/>
       <p id="errorconfirmPW" style="color: red"></p>
       <button type="button" onclick="onClickRegister()">S'inscrire</button>
-      <!-- <input onclick="onClickRegister()" type="button" value="S'inscrire"> -->
+      <!-- <input onclick="onClickRegister()" type="submit" value="S'inscrire"> -->
+      <p id="ConfirmRegister"></p>
     </div>
   </form>
 </div>
 <script>
   const onClickRegister = () => {
     console.log("Click register")
+    let isTrue = false;
     fetch("/register" , {
       method: "POST",
       headers: {
@@ -86,7 +88,7 @@
       }
 
       if(!!data.errorConfirmPW) {
-        document.getElementById("errorConfirmPW").innerHTML = data.errorConfirmPW
+        document.getElementById("errorConfirmPW").innerText = data.errorConfirmPW
         console.log("test4")
         return
       }else {
@@ -94,7 +96,13 @@
       }
 
       if(!!data.errorNotSamePW) {
-        document.getElementById("errorConfirmPW").innerHTML = data.errorNotSamePW
+        document.getElementById("errorConfirmPW").innerText = data.errorNotSamePW
+        return
+      }
+      
+      if(!!data.CorrectRegister) {
+        document.getElementById("ConfirmRegister").innerText = data.CorrectRegister
+        return
       }
     })
   }
