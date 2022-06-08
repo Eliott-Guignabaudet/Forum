@@ -224,7 +224,7 @@ h1{
     margin: 1%;
     display: flex;
     justify-content: center;
-    
+    background-color: #31383f;
 } 
 #button_humour{
     /* position: absolute; */

@@ -21,14 +21,30 @@
       <div class="inscription">
           <div class="info">
       <h1>Connexion</h1>
-    <form method="POST">
+    <form method="POST" action="/">
       <label>Email:</label><br />
-      <input type="text" name="Email"><br/>
+      <input type="text" id="Email"><br/>
+
       <label>Password:</label><br />
-      <input type="text" name="Password"><br/>
-      <input type="submit">
+      <input type="text" id="Password"><br/>
+
+      <input onclick="logIn()" type="submit" value="Connexion">
     </div>
   </form>
 </div>
+<script>
+  const logIn = () => {
+    fetch("/login" , {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        email : document.getElementById("Email"),
+        password: document.getElementById("Password")
+      })
+    })
+  }
+</script>
   </body>
 </html>
