@@ -91,7 +91,6 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	}
 
 	body, _ := ioutil.ReadAll(r.Body)
-	fmt.Println(string(body))
 	err := json.Unmarshal(body, &post)
 	if err != nil {
 		println("ERREUR : ", err)
@@ -111,7 +110,7 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("contenu vide")
 		w.Write([]byte("{\"error\":\"aucune category\"}"))
 	} else {
-		fmt.Println("good")
+		fmt.Println("api: ", post)
 		addPost(post)
 	}
 }

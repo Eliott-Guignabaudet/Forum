@@ -61,6 +61,9 @@ func addPost(post Post) (int64, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	result, _ := db.Exec(`INSERT INTO posts (UserId, Category, Title, Content) VALUES (?, ?, ?, ?)`, post.UserId, post.Category, post.Title, post.Content)
+	result, err := db.Exec(`INSERT INTO posts (UserId, Category, Title, Content) VALUES (?, ?, ?, ?)`, post.UserId, post.Category, post.Title, post.Content)
+	if err != nil {
+		log.Fatal(err)
+	}
 	return result.LastInsertId()
 }
