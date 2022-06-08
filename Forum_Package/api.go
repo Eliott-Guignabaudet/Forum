@@ -16,12 +16,13 @@ type Post struct {
 	Title    string
 	Content  string
 }
+
 type UserParams struct {
 	Id        int
-	Pseudo    string
-	Email     string
-	Password  string
-	ConfirmPW string
+	Pseudo    string `json:Pseudo`
+	Email     string `json:Email`
+	Password  string `json:Password`
+	ConfirmPW string `json:ConfirmPW`
 }
 
 func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
@@ -73,13 +74,37 @@ func Register(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if User.ConfirmPW == User.Password {
+		fmt.Println("testGO5")
+		rw.Write([]byte("{\"CorrectRegister\" : \"Bravo vous vous êtes inscrit.\"}"))
+		return
+	}
+
 	//insert into
 	InsertIntoUsers(db, User.Pseudo, User.Email, User.Password)
+	
 }
 
-// func Login(rw , http.ResponseWriter , r *http.Request) {
+func Login(Rw http.ResponseWriter , Rq *http.Request) {
+	var Users UserParams
+	isTrue := false
+	db := InitDatabase("ForumDB.db")
+	defer db.Close()
+	Id := selectUsersByEmailAndPW(db , Users.Email , Users.Password)
+	body, _ := ioutil.ReadAll(Rq.Body)
+	json.Unmarshal(body, &Users)
 
-// }
+
+	if  Id > 0 {
+		isTrue = true
+	}
+
+	if isTrue == true {
+		fmt.Println("Sa marche")
+	}
+	
+	fmt.Println("test" , Users.Email , Users.Password , isTrue)
+}
 
 func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	var post Post
