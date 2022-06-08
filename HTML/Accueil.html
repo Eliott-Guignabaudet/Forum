@@ -20,7 +20,7 @@
               <div class="deconnexion">
                 <button id="Deconnexion">Déconnexion</button>
               </div>
-            <a href="profil.html"><button class="profil"></button>
+            <a href="/Profil"><button class="profil"></button>
                 </a>
             </div>
         </div>
@@ -72,11 +72,11 @@
                 <option value="Autre">Autre</option>
             </select>
         <!-- <img src="https://imgs.search.brave.com/W5Jx9PoAGPldnFMCYdhiNf3Cty0hAjqOehupN73WO1U/rs:fit:800:720:1/g:ce/aHR0cDovL3BuZ2lt/Zy5jb20vdXBsb2Fk/cy9wb2tlYmFsbC9w/b2tlYmFsbF9QTkcz/My5wbmc" alt="Envoyer" id="ball_envoyer"> -->
-        <div class="envoyerpost"><button id="envoyer" onclick="OnclickCreatePost()">Envoyer</button></div>
+        <div class="envoyerpost"><a href=""></a><button id="envoyer" onclick="OnclickCreatePost() ">Envoyer</button></a></div>
         
         </div>
           <div class="popup" class="alignementpost">
-              <input type="text" id="postTitle" type="search" placeholder="Titre du post" required><a href="" class="cross"><button class="fermer">&times;</button></a>
+              <input type="text" id="postTitle" type="search" placeholder="Titre du post" required><a href="/" class="cross"><button class="fermer">&times;</button></a>
               <textarea name="contentPost" id="contentPost" cols="30" rows="10" placeholder="Ecrivez quelque chose" required ></textarea>
               <label for="theme-select" class="alignementpost">Choisis un theme:</label>
               <select  id="theme-select">
@@ -91,7 +91,7 @@
                   <option value="Autre">Autre</option>
               </select>
           <!-- <img src="https://imgs.search.brave.com/W5Jx9PoAGPldnFMCYdhiNf3Cty0hAjqOehupN73WO1U/rs:fit:800:720:1/g:ce/aHR0cDovL3BuZ2lt/Zy5jb20vdXBsb2Fk/cy9wb2tlYmFsbC9w/b2tlYmFsbF9QTkcz/My5wbmc" alt="Envoyer" id="ball_envoyer"> -->
-          <div class="envoyerpost"><button id="envoyer" onclick="OnclickCreatePost()">Envoyer</button></div>
+          <div class="envoyerpost"><button id="envoyer" onclick="OnclickCreatePost()" class="fermer">Envoyer</button></div>
           
           <button onclick="OnclickCreatePost()">Envoyer</button>
           <a href="" class="cross">&times;</a>

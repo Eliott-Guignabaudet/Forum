@@ -68,20 +68,29 @@ h1{
         width: 100px;
         background-image: url("../CSS/3201587-200.png");
         background-size: 100%;
-    }
-    .inscription{
-        height: 100vh;
-        width:100vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+}
+.inscription{
+    height: 100vh;
+    width:100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .info{
+padding: 5%;
+border: 2px solid black;
+}
+.Profil{
+    display: flex;
+    padding: 10%;
+    justify-content: center;
+}
+.informations{
     padding: 5%;
     border: 2px solid black;
 }
 .inscr{
-    display: block;
+display: block;
     background-color: #fcd752;
     border: 1px solid black;
     border-radius: 15px;
