@@ -275,10 +275,8 @@ display: block;
     justify-content: space-around;
 }
 #contentPost{
-    /* position: absolute; */
-    height: 300px;
-    width: 600px;
-    resize: none;
+    height: 60%;
+    width: 80%;
 }
 #ball_envoyer{
     /* position: absolute; */
