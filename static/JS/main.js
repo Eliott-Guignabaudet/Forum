@@ -1,4 +1,4 @@
-
+let globalJsonPost;
     // document.getElementById("testPost").value = "yay"
     // fetch("")
     // .then((res) => {
@@ -10,11 +10,9 @@
     // }) 
 
 
-fetch("/GetPosts")
-.then((res) => res.json())
-.then((json) => {
-    console.log("response", json)
-    json.forEach(element => {
+
+const displayPosts = (posts) =>{
+    posts.forEach(element => {
         const newPost = document.createElement("div");
         const title = document.createElement("h1");
         const content = document.createElement("p");
@@ -44,11 +42,27 @@ fetch("/GetPosts")
         newPost.appendChild(divReactions);
 
         document.getElementsByClassName("post")[0].children[0].appendChild(newPost);
-
-
-
     });
+}
 
+const searchPosts = (searchValue) =>{
+    const postFiltered = globalJsonPost.filter(post => {
+        if (post.Content.includes(searchValue)){
+            return true
+        }else if (post.Title.includes(searchValue)){
+            return true
+        }
+        return false
+    })
+    displayPosts(postFiltered)
+}
+
+fetch("/GetPosts")
+.then((res) => res.json())
+.then((json) => {
+    console.log("response", json)
+    displayPosts(json);
+    globalJsonPost = json;
 
 })
 
@@ -84,10 +98,10 @@ function OnclickCreatePost(){
         })
     })
     .then((res) => {
-        res.json()
+        return res.json()
     })
     .then((data) => {
-        // console.log(data);
+        console.log("data:",data);
 
         // if (!!data.error){
         //     document.getElementById("errorPost").innerText = data.error

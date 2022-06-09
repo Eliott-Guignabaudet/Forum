@@ -276,8 +276,8 @@ display: block;
 }
 #contentPost{
     /* position: absolute; */
-    height: 300px;
-    width: 600px;
+    height: 60%;
+    width: 80%;
     resize: none;
 }
 #ball_envoyer{
