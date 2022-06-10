@@ -18,13 +18,19 @@
             <div class="Profil">
                 <div class="informations">
             <h1>Profil</h1>
-            <div style="display:flex;justify-content:center;align-items: center;">
-                <div>Yoyotruc<button>&#128394;&#65039;</button></div>
-                <div>yoyo@gmail.com</div>
-                <div>yoyo</div>
+            <div style="display:flex;justify-content:center;align-items:flex-start;height: 100%;">
+                <form method="POST">
+                    <p id="errorPseudo" style="color: red"></p><div><label>Pseudo: <input type="text" value="Pseudo" id="Pseudo">
+                        </label><button>&#128394;&#65039;</button></div>
+                    <p id="errorPseudo" style="color: red"></p><div><label>Email: <input type="text" value="Email" id="Email">
+                        </label><button>&#128394;&#65039;</button></div>
+                        <p id="errorPseudo" style="color: red"></p><div><label>Mot de Passe: <input type="password" value="Eliott" id="motdepasse" >
+                        <input type="button" onclick="Afficher()" value="&#128065;"></input><button>&#128394;&#65039;</button></label></div>
+        </form>
         </div>
           </div>
         </form>
       </div>
+      <script src="/static/JS/main.js"></script>
     </body>
 </html>
