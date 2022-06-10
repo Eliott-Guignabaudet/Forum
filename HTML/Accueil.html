@@ -25,16 +25,16 @@
             </div>
         </div>
         <div id="theme">
-        <button class="buttontheme" id="button_environement">Environnement</button>
-        <button class="buttontheme" id="button_sport">Sport</button>
-        <button class="buttontheme" id="button_tech">Technologie</button>
-        <button class="buttontheme" id="button_jeuxvideo">Jeux Vidéo</button>
+        <button class="buttontheme" id="button_environement" onclick="ChangeBackgroundcolorV()">Environnement</button>
+        <button class="buttontheme" id="button_sport" onclick="ChangeBackgroundcolorS()">Sport</button>
+        <button class="buttontheme" id="button_tech" onclick="ChangeBackgroundcolorT()">Technologie</button>
+        <button class="buttontheme" id="button_jeuxvideo" onclick="ChangeBackgroundcolorJ()">Jeux Vidéo</button>
       </div>
         <div id="theme">
-        <button class="buttontheme" id="button_reflexion">Réfléxion</button>
-        <button class="buttontheme" id="button_music">Musique</button>
-        <button class="buttontheme" id="button_humour">Humour</button>
-        <button class="buttontheme" id="button_autre">Autre</button>
+        <button class="buttontheme" id="button_reflexion" onclick="ChangeBackgroundcolorR()">Réfléxion</button>
+        <button class="buttontheme" id="button_music" onclick="ChangeBackgroundcolorM()">Musique</button>
+        <button class="buttontheme" id="button_humour" onclick="ChangeBackgroundcolorH()">Humour</button>
+        <button class="buttontheme" id="button_autre" onclick="ChangeBackgroundcolorA()">Autre</button>
         </div>
         <div id="theme">
         <a href="#popupPosts">
@@ -49,7 +49,8 @@
 </div>
         <div id="popupPosts" class="overlay">
           <div class="popup" class="alignementpost">
-            <input type="text" id="postTitle" type="search" placeholder="Titre du post" required><a href="" class="cross"><button class="fermer">&times;</button></a>
+            <input type="text" id="postTitle" type="search" placeholder="Titre du post" required>
+            <a href="" class="cross"><button class="fermer">&times;</button></a>
             <textarea name="contentPost" id="contentPost" cols="30" rows="10" placeholder="Ecrivez quelque chose" required ></textarea>
             <label for="theme-select" class="alignementpost">Choisis un theme:</label>
             <select  id="theme-select">
@@ -68,10 +69,16 @@
            <div class="ajoutfile"><input type="file"></input></div>
            <div class="envoyerpost"><a href=""></a><button id="envoyer" onclick="OnclickCreatePost() ">Envoyer</button></a></div>         
           </div>
-          
         </div>
         
 
+        <div id="popupCom" class="overlay">
+          <div class="popup" class="alignementpost">
+            <textarea name="contentCommentaire" id="contentPost" cols="30" rows="10" placeholder="Ecrivez un commentaire" required ></textarea>
+            <div class="envoyerCom"><button id="envoyer">Envoyer</button></div>
+            <a href="" class="cross"><button class="fermer">&times;</button></a>
+          </div>
+        </div>
 
     
         <script src="/static/JS/main.js"></script>

@@ -42,7 +42,6 @@ func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 
 func Register(rw http.ResponseWriter, r *http.Request) {
 	var User UserParams
-
 	db := InitDatabase("ForumDB.db")
 	defer db.Close()
 	body, _ := ioutil.ReadAll(r.Body)
@@ -82,7 +81,6 @@ func Register(rw http.ResponseWriter, r *http.Request) {
 	// 	http.Redirect(rw, r, "/loginPage", http.StatusFound)
 	// }
 	InsertIntoUsers(db, User.Pseudo, User.Email, User.Password)
-
 }
 
 func Login(Rw http.ResponseWriter, Rq *http.Request) {

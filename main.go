@@ -7,8 +7,6 @@ import (
 	"net/http"
 )
 
-//idActualUser := 0 //si 0 cela veut dire que il n'y a pas d'utilisateur
-
 func main() {
 	Forum.InitDatabase("ForumDB.db")
 	register, _ := template.ParseFiles("HTML/inscription.html")
@@ -16,6 +14,7 @@ func main() {
 	login := template.Must(template.ParseFiles("HTML/connexion.html"))
 	profil := template.Must(template.ParseFiles("HTML/profil.html"))
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
+
 		Home.Execute(rw, nil)
 	})
 

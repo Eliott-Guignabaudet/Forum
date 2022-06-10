@@ -262,7 +262,7 @@ display: block;
     margin: 1%;
     display: flex;
     justify-content: center;
-    background-color: #31383f;
+    
 } 
 #button_humour{
     padding-left: 3%;
@@ -309,6 +309,7 @@ display: block;
     width: 80%;
     resize: none;
 }
+
 #ball_envoyer{
     /* position: absolute; */
     height: 100px;

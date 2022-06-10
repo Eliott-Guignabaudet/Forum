@@ -2,6 +2,7 @@ package Forum
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 )
 
@@ -28,6 +29,15 @@ func InitDatabase(database string) *sql.DB {
 								Content TEXT NOT NULL,
 								FOREIGN KEY (UserId) REFERENCES users(id)
 							);
+
+							CREATE TABLE IF NOT EXISTS commentaires (
+								Id INTEGER PRIMARY KEY AUTOINCREMENT,
+								UserId INTEGER NOT NULL,
+								PostId INTEGER NOT NULL,
+								Content TEXT NOT NULL,
+								FOREIGN KEY (UserId) REFERENCES users(id)
+								FOREIGN KEY (PostId) REFERENCES posts(Id)
+							);
 						 `
 	_, err = db.Exec(sqlStmt)
 
@@ -44,6 +54,11 @@ func InsertIntoUsers(db *sql.DB, name string, email string, password string) (in
 
 func InsertIntoPosts(db *sql.DB, user_id int, content string) (int64, error) {
 	result, _ := db.Exec(`INSERT INTO posts (user_id , content) VALUES (?,?) `, user_id, content)
+	return result.LastInsertId()
+}
+
+func InsertIntoCommentaire(db *sql.DB, user_id int, post_id int, content string) (int64, error) {
+	result, _ := db.Exec(`INSERT INTO commentaires (user_id, post_id, content) VALUES (? , ?, ? )`, user_id, post_id, content)
 	return result.LastInsertId()
 }
 
@@ -71,5 +86,12 @@ func addPost(post Post) (int64, error) {
 func selectUsersByEmailAndPW(db *sql.DB, email string, password string) UserParams {
 	var user UserParams
 	db.QueryRow(`SELECT * FROM users WHERE email = ? and password = ?`, email, password).Scan(&user.Id, &user.Pseudo, &user.Email, &user.Password)
+	return user
+}
+
+func selectUserByEmailAndPW(db *sql.DB, email string, password string) UserParams {
+	var user UserParams
+	db.QueryRow(`SELECT * FROM users WHERE email = ? and password = ?`, email, password).Scan(&user.Id, &user.Pseudo, &user.Email, &user.Password)
+	fmt.Println("to sql:", user)
 	return user
 }

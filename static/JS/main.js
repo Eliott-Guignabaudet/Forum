@@ -85,7 +85,6 @@ input.type = "password";
 } 
 } 
 
-let idActualUser = 0 
    
    
    fetch("")
@@ -132,4 +131,31 @@ function OnclickCreatePost(){
         console.log("nop")
     }
     
+}
+
+
+function ChangeBackgroundcolorV(){
+    document.body.style.backgroundColor = "green"
+}
+
+function ChangeBackgroundcolorS(){
+    document.body.style.backgroundColor = "brown"
+}
+
+function ChangeBackgroundcolorT(){
+    document.body.style.backgroundColor = "gray"
+}
+
+function ChangeBackgroundcolorJ(){
+    document.body.style.backgroundColor = "blue"
+}
+function ChangeBackgroundcolorR(){
+    document.body.style.backgroundColor = "purple"
+}
+function ChangeBackgroundcolorH(){
+    document.body.style.backgroundColor = "violet"
+}
+
+function ChangeBackgroundcolorA(){
+    document.body.style.backgroundColor = "whitesmoke"
 }
