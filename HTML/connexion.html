@@ -37,8 +37,8 @@
         "content-type": "application/json"
       },
       body: JSON.stringify({
-        email : document.getElementById("Email"),
-        password: document.getElementById("Password")
+        email : document.getElementById("Email").value,
+        password: document.getElementById("Password").value
       })
     })
   }

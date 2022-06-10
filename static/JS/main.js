@@ -1,4 +1,4 @@
-
+let globalJsonPost;
     // document.getElementById("testPost").value = "yay"
     // fetch("")
     // .then((res) => {
@@ -8,13 +8,18 @@
     //     console.log(data)
     //     document.getElementById("testPost").value = "yay"
     // }) 
+const searchBar = document.getElementsByClassName("recherche")[0];
+searchBar.addEventListener(onkeydown, function(){searchPosts(searchBar.value)});
 
+const displayPosts = (posts) =>{
+    const postsDisplayed = document.querySelectorAll(".post .posts");
+    console.log("displayed:")
+    for (const post of postsDisplayed) {
+        console.log(post)
+        post.remove();
+    }
 
-fetch("/GetPosts")
-.then((res) => res.json())
-.then((json) => {
-    console.log("response", json)
-    json.forEach(element => {
+    posts.forEach(element => {
         const newPost = document.createElement("div");
         const title = document.createElement("h1");
         const content = document.createElement("p");
@@ -23,7 +28,6 @@ fetch("/GetPosts")
         const likeButton = document.createElement("button");
         const comentary = document.createElement("button");
 
-        console.log(element)
         newPost.className = "posts";
         title.textContent = element.Title;
         content.textContent = element.Content;
@@ -43,11 +47,29 @@ fetch("/GetPosts")
         newPost.appendChild(divReactions);
 
         document.getElementsByClassName("post")[0].children[0].appendChild(newPost);
-
-
-
     });
+}
 
+const searchPosts = (searchValue) => {
+    console.log("search!")
+    const postFiltered = globalJsonPost.filter(post => {
+        if (post.Content.includes(searchValue)){
+            return true
+        }else if (post.Title.includes(searchValue)){
+            return true
+        }
+        return false
+    })
+    console.log(postFiltered)
+    displayPosts(postFiltered)
+}
+
+fetch("/GetPosts")
+.then((res) => res.json())
+.then((json) => {
+    console.log("response", json)
+    displayPosts(json);
+    globalJsonPost = json;
 
 })
 function Afficher()
@@ -95,10 +117,10 @@ function OnclickCreatePost(){
         })
     })
     .then((res) => {
-        res.json()
+        return res.json()
     })
     .then((data) => {
-        // console.log(data);
+        console.log("data:",data);
 
         // if (!!data.error){
         //     document.getElementById("errorPost").innerText = data.error
