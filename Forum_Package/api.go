@@ -38,7 +38,6 @@ func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	posts = tranlateSQLrowPosts(selectAllFromTable("posts"))
 	jsonPosts, _ := json.Marshal(posts)
 	w.Write(jsonPosts)
-	fmt.Println(string(jsonPosts))
 }
 
 func Register(rw http.ResponseWriter, r *http.Request) {
@@ -77,8 +76,6 @@ func Register(rw http.ResponseWriter, r *http.Request) {
 		fmt.Println("c'est good")
 		rw.Write([]byte("{\"CorrectRegister\" : \"true\"}"))
 	}
-
-	// registerError(User, rw)
 
 	//insert into
 	// if registerError(User, rw) {
@@ -124,12 +121,14 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	}
 
 	body, _ := ioutil.ReadAll(r.Body)
-	fmt.Println(string(body))
 	err := json.Unmarshal(body, &post)
 	if err != nil {
 		println("ERREUR : ", err)
 	}
 	fmt.Println(post)
+	fmt.Println("Title", post.Title)
+	fmt.Println("Content", post.Content)
+	fmt.Println("Category", post.Category)
 	if post.Title == "" {
 		// erreur titre vide
 		fmt.Println(post)
@@ -141,10 +140,10 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("{\"error\":\"contenu vide\"}"))
 	} else if post.Category == "" {
 		// erreur contenu vide
-		fmt.Println("contenu vide")
-		w.Write([]byte("{\"error\":\"aucune category\"}"))
+		fmt.Println("Aucune categorie")
+		w.Write([]byte("{\"error\":\"aucune categorie\"}"))
 	} else {
-		fmt.Println("good")
+		fmt.Println("api: ", post)
 		addPost(post)
 	}
 }

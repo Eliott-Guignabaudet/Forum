@@ -61,12 +61,15 @@ func addPost(post Post) (int64, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	result, _ := db.Exec(`INSERT INTO posts (UserId, Category, Title, Content) VALUES (?, ?, ?, ?)`, post.UserId, post.Category, post.Title, post.Content)
+	result, err := db.Exec(`INSERT INTO posts (UserId, Category, Title, Content) VALUES (?, ?, ?, ?)`, post.UserId, post.Category, post.Title, post.Content)
+	if err != nil {
+		log.Fatal(err)
+	}
 	return result.LastInsertId()
 }
 
-func selectUsersByEmailAndPW(db *sql.DB , email string , password string ) int {
+func selectUsersByEmailAndPW(db *sql.DB, email string, password string) int {
 	var user UserParams
-	db.QueryRow(`SELECT * FROM users WHERE email = ? and password = ?` , email , password).Scan(&user.Id , &user.Pseudo , &user.Email , &user.Password)
+	db.QueryRow(`SELECT * FROM users WHERE email = ? and password = ?`, email, password).Scan(&user.Id, &user.Pseudo, &user.Email, &user.Password)
 	return user.Id
 }
