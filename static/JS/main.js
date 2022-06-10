@@ -8,10 +8,17 @@ let globalJsonPost;
     //     console.log(data)
     //     document.getElementById("testPost").value = "yay"
     // }) 
-
-
+const searchBar = document.getElementsByClassName("recherche")[0];
+searchBar.addEventListener(onkeydown, function(){searchPosts(searchBar.value)});
 
 const displayPosts = (posts) =>{
+    const postsDisplayed = document.querySelectorAll(".post .posts");
+    console.log("displayed:")
+    for (const post of postsDisplayed) {
+        console.log(post)
+        post.remove();
+    }
+
     posts.forEach(element => {
         const newPost = document.createElement("div");
         const title = document.createElement("h1");
@@ -20,8 +27,6 @@ const displayPosts = (posts) =>{
         const divReactionStyle = document.createElement("div");
         const likeButton = document.createElement("button");
         const comentary = document.createElement("button");
-
-        console.log(element)
 
         newPost.className = "posts";
         title.textContent = element.Title;
@@ -45,7 +50,8 @@ const displayPosts = (posts) =>{
     });
 }
 
-const searchPosts = (searchValue) =>{
+const searchPosts = (searchValue) => {
+    console.log("search!")
     const postFiltered = globalJsonPost.filter(post => {
         if (post.Content.includes(searchValue)){
             return true
@@ -54,6 +60,7 @@ const searchPosts = (searchValue) =>{
         }
         return false
     })
+    console.log(postFiltered)
     displayPosts(postFiltered)
 }
 
