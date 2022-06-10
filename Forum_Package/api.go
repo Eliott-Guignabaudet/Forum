@@ -19,14 +19,20 @@ type Post struct {
 
 type UserParams struct {
 	Id        int
-	Pseudo    string `json:Pseudo`
-	Email     string `json:Email`
-	Password  string `json:Password`
-	ConfirmPW string `json:ConfirmPW`
+	Pseudo    string
+	Email     string
+	Password  string
+	ConfirmPW string
 }
+
+// type Lgin struct {
+// 	EmailLog    string
+// 	PasswordLog string
+// }
 
 func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	var posts []Post
+
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &posts)
 	posts = tranlateSQLrowPosts(selectAllFromTable("posts"))
@@ -37,32 +43,27 @@ func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 
 func Register(rw http.ResponseWriter, r *http.Request) {
 	var User UserParams
-	// isTrue := true
+
 	db := InitDatabase("ForumDB.db")
 	defer db.Close()
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &User)
+	fmt.Println("Register : ", User)
 
 	//Check si tous les champs sont good
 	if User.Pseudo == "" {
 		fmt.Println("testGO")
 		rw.Write([]byte("{\"errorPseudo\" : \"Pseudo nécessaire\"}"))
 		return
-	}
-
-	if User.Email == "" {
+	} else if User.Email == "" {
 		fmt.Println("testGO1")
 		rw.Write([]byte("{\"errorEmail\" : \"Email requis.\"}"))
 		return
-	}
-
-	if User.Password == "" {
+	} else if User.Password == "" {
 		fmt.Println("testGO2")
 		rw.Write([]byte("{\"errorPassword\" : \"password requis.\"}"))
 		return
-	}
-
-	if User.ConfirmPW == "" && User.Password != "" {
+	} else if User.ConfirmPW == "" && User.Password != "" {
 		fmt.Println("testGO3")
 		rw.Write([]byte("{\"errorConfirmPW\" : \"confirmation du mot de passe nécessaire.\"}"))
 		return
@@ -72,38 +73,45 @@ func Register(rw http.ResponseWriter, r *http.Request) {
 		fmt.Println("testGO4")
 		rw.Write([]byte("{\"errorNotSamePW\" : \"Le mot de passe n'est pas le même.\"}"))
 		return
+	} else {
+		fmt.Println("c'est good")
+		rw.Write([]byte("{\"CorrectRegister\" : \"true\"}"))
 	}
 
-	if User.ConfirmPW == User.Password {
-		fmt.Println("testGO5")
-		rw.Write([]byte("{\"CorrectRegister\" : \"Bravo vous vous êtes inscrit.\"}"))
-		return
-	}
+	// registerError(User, rw)
 
 	//insert into
+	// if registerError(User, rw) {
+	// 	http.Redirect(rw, r, "/loginPage", http.StatusFound)
+	// }
 	InsertIntoUsers(db, User.Pseudo, User.Email, User.Password)
-	
+
 }
 
-func Login(Rw http.ResponseWriter , Rq *http.Request) {
+func Login(Rw http.ResponseWriter, Rq *http.Request) {
 	var Users UserParams
-	isTrue := false
+	isCorrectUser := false
 	db := InitDatabase("ForumDB.db")
 	defer db.Close()
-	Id := selectUsersByEmailAndPW(db , Users.Email , Users.Password)
+	fmt.Println(Users.Email)
 	body, _ := ioutil.ReadAll(Rq.Body)
 	json.Unmarshal(body, &Users)
 
-
-	if  Id > 0 {
-		isTrue = true
+	UserInfo := selectUsersByEmailAndPW(db, Users.Email, Users.Password)
+	fmt.Println("Log In:", Users, Users.Email, Users.Password)
+	fmt.Println(UserInfo, UserInfo.Id)
+	if UserInfo.Email == Users.Email && UserInfo.Password == Users.Password {
+		isCorrectUser = true
+		fmt.Println("OUI OUI OUI")
+	} else {
+		isCorrectUser = false
+		fmt.Println("Pleure bébou")
 	}
 
-	if isTrue == true {
+	if isCorrectUser {
 		fmt.Println("Sa marche")
 	}
-	
-	fmt.Println("test" , Users.Email , Users.Password , isTrue)
+
 }
 
 func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
