@@ -11,6 +11,15 @@ h1{
     border-radius: 10px;
     margin-bottom: 0;
 }
+h2{
+    margin-top: 1%;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 0;
+}
+.ajoutfile{
+    margin-top:2%;
+}
 .reaction{
     height: 30%;
     display: flex;
@@ -20,6 +29,11 @@ h1{
 .posts{
     margin: 1%;
     border-radius: 10px;
+    padding:0.5%;
+}
+.MesPost{
+    display: flex;
+    justify-content: center;
 }
 .logo{
     height: 110px;
@@ -83,7 +97,7 @@ border: 2px solid black;
 }
 .Profil{
     display: flex;
-    padding: 10%;
+    padding: 5%;
     justify-content: center;
 }
 .informations{

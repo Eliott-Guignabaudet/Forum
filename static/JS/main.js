@@ -24,7 +24,6 @@ fetch("/GetPosts")
         const comentary = document.createElement("button");
 
         console.log(element)
-
         newPost.className = "posts";
         title.textContent = element.Title;
         content.textContent = element.Content;
