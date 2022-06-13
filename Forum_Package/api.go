@@ -25,7 +25,7 @@ type UserParams struct {
 	ConfirmPW string
 }
 
-// type Lgin struct {
+// type Login struct {
 // 	EmailLog    string
 // 	PasswordLog string
 // }
@@ -105,6 +105,7 @@ func Login(Rw http.ResponseWriter, Rq *http.Request) {
 
 	if isCorrectUser {
 		fmt.Println("Sa marche")
+		Rw.Write([]byte("{\"resp\":\"login!\",\"pseudo\":\"" + UserInfo.Pseudo + "\", \"email\":\"" + UserInfo.Email + "\" }"))
 	}
 
 }

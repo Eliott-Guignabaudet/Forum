@@ -34,6 +34,9 @@ func main() {
 
 	http.HandleFunc("/GetPosts", Forum.GetPostHandlefunc)
 	http.HandleFunc("/CreatePost", Forum.AddPostHandlefunc)
+	http.HandleFunc("/readcookie", Forum.ReadCookie)
+	http.HandleFunc("/deletecookie", Forum.DeleteCookie)
+	http.HandleFunc("/createcookie", Forum.CreateCookie)
 
 	fmt.Println("test1")
 	fs := http.FileServer(http.Dir("static"))
