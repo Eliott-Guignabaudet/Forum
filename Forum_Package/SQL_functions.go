@@ -83,6 +83,18 @@ func addPost(post Post) (int64, error) {
 	return result.LastInsertId()
 }
 
+func addComms(comment Commentaires) (int64, error) {
+	db, err := sql.Open("sqlite3", "ForumDB.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+	result, err := db.Exec(`INSERT INTO commentaires (UserId, PostId, Content) VALUES (?,?,?)`, comment.UserId, comment.PostId, comment.Content)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return result.LastInsertId()
+}
+
 func selectUsersByEmailAndPW(db *sql.DB, email string, password string) UserParams {
 	var user UserParams
 	db.QueryRow(`SELECT * FROM users WHERE email = ? and password = ?`, email, password).Scan(&user.Id, &user.Pseudo, &user.Email, &user.Password)
@@ -95,3 +107,16 @@ func selectUserByEmailAndPW(db *sql.DB, email string, password string) UserParam
 	fmt.Println("to sql:", user)
 	return user
 }
+
+func selectComByPostId(post_id int) *sql.Rows {
+	db, err := sql.Open("sqlite3", "ForumDB.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+	result, _ := db.Query(`SELECT * FROM commentaires WHERE PostId = ?`, post_id)
+	return result
+}
+
+// func selectPostbyCategory(Category string) *sql.Rows {
+
+// }
