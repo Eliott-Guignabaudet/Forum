@@ -12,7 +12,8 @@ func GetSession(w http.ResponseWriter, r *http.Request) {
 	auth := session.Values["authenticated"]
 	if auth != nil {
 		json.Unmarshal([]byte(auth.(string)), &user)
-		w.Write([]byte("\"id\":\"" + strconv.Itoa(user.Id) + "\", \"pseudo\":\"" + user.Pseudo + "\", \"email\":\"" + user.Email + "\""))
+		w.Write([]byte("{\"id\":" + strconv.Itoa(user.Id) + ", \"pseudo\":\"" + user.Pseudo + "\", \"email\":\"" + user.Email + "\"}"))
+		//w.Write([]byte(auth.(string)))
 
 	} else {
 		w.Write([]byte("\"resp\":\"not authenticated\""))

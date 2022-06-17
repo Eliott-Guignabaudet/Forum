@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/sessions"
 	_ "github.com/mattn/go-sqlite3"
@@ -112,8 +113,8 @@ func Login(Rw http.ResponseWriter, Rq *http.Request) {
 		session.Values["authenticated"] = string(res)
 		session.Save(Rq, Rw)
 
-		//Rw.Write([]byte("{\"resp\":\"login!\",\"id\":\" test \",\"pseudo\":\"" + UserInfo.Pseudo + "\", \"email\":\"" + UserInfo.Email + "\" }"))
-		Rw.Write([]byte("{\"resp\":\"login!\"}"))
+		Rw.Write([]byte("{\"resp\":\"login!\",\"id\":" + strconv.Itoa(UserInfo.Id) + ",\"pseudo\":\"" + UserInfo.Pseudo + "\", \"email\":\"" + UserInfo.Email + "\" }"))
+		//Rw.Write([]byte("{\"resp\":\"login!\"}"))
 	}
 
 }
