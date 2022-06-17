@@ -169,6 +169,17 @@ display: block;
     row-gap: 2;
     height: auto;
 }
+.createComms{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.text-commentaire{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #button_tech{
     padding-left: 3%;
     padding-right: 3%;
@@ -350,7 +361,18 @@ display: block;
     opacity: 1;
 
 }
-
+.comment{
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2%;
+    width:80%;
+}
+.1postComms{
+    
+}
 .popup{
     text-align: center;
     margin: 6rem auto;
@@ -358,7 +380,8 @@ display: block;
     background: #fcd752;
     border-radius: 5px;
     width: 45%;
-    height: 75%;
+    height: auto;
+    min-height: 75%;
     position: relative;
     transition: all 0.4s ease-in-out;
 }
