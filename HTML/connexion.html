@@ -48,17 +48,7 @@
       console.log(json)
       if (!!json.resp){
         if (json.resp== "login!"){
-          fetch("/createcookie", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json"
-            },
-						body: JSON.stringify({
-							email: json.email,
-							pseudo: json.pseudo
-						})
-
-          })
+          
         }
       }
     })

@@ -2,7 +2,6 @@ package Forum
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 )
 
@@ -86,6 +85,5 @@ func addPost(post Post) (int64, error) {
 func selectUsersByEmailAndPW(db *sql.DB, email string, password string) UserParams {
 	var user UserParams
 	db.QueryRow(`SELECT * FROM users WHERE email = ? and password = ?`, email, password).Scan(&user.Id, &user.Pseudo, &user.Email, &user.Password)
-	fmt.Println("to sql:", user)
 	return user
 }

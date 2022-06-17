@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/gorilla/sessions"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -30,9 +31,14 @@ type UserParams struct {
 // 	PasswordLog string
 // }
 
+var (
+	// key must be 16, 24 or 32 bytes long (AES-128, AES-192 or AES-256)
+	key   = []byte("super-secret-key")
+	store = sessions.NewCookieStore(key)
+)
+
 func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	var posts []Post
-
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &posts)
 	posts = tranlateSQLrowPosts(selectAllFromTable("posts"))
@@ -93,19 +99,21 @@ func Login(Rw http.ResponseWriter, Rq *http.Request) {
 	json.Unmarshal(body, &Users)
 
 	UserInfo := selectUsersByEmailAndPW(db, Users.Email, Users.Password)
-	fmt.Println("Log In:", Users, Users.Email, Users.Password)
-	fmt.Println(UserInfo, UserInfo.Id)
 	if UserInfo.Email == Users.Email && UserInfo.Password == Users.Password {
 		isCorrectUser = true
-		fmt.Println("OUI OUI OUI")
 	} else {
 		isCorrectUser = false
 		fmt.Println("Pleure bébou")
 	}
-
+	fmt.Println(UserInfo.Id)
 	if isCorrectUser {
-		fmt.Println("Sa marche")
-		Rw.Write([]byte("{\"resp\":\"login!\",\"pseudo\":\"" + UserInfo.Pseudo + "\", \"email\":\"" + UserInfo.Email + "\" }"))
+		session, _ := store.Get(Rq, "cookie-name")
+		res, _ := json.Marshal(UserInfo)
+		session.Values["authenticated"] = string(res)
+		session.Save(Rq, Rw)
+
+		//Rw.Write([]byte("{\"resp\":\"login!\",\"id\":\" test \",\"pseudo\":\"" + UserInfo.Pseudo + "\", \"email\":\"" + UserInfo.Email + "\" }"))
+		Rw.Write([]byte("{\"resp\":\"login!\"}"))
 	}
 
 }
