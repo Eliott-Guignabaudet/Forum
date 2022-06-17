@@ -27,10 +27,12 @@ type UserParams struct {
 	ConfirmPW string
 }
 
-// type Login struct {
-// 	EmailLog    string
-// 	PasswordLog string
-// }
+type Commentaires struct {
+	Id      int
+	UserId  int
+	PostId  int
+	Content string
+}
 
 var (
 	// key must be 16, 24 or 32 bytes long (AES-128, AES-192 or AES-256)
@@ -153,5 +155,35 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	} else {
 		fmt.Println("api: ", post)
 		addPost(post)
+	}
+}
+
+func GetComsByPostId(w http.ResponseWriter, r *http.Request) {
+	var comments []Commentaires
+	var comment Commentaires
+	body, _ := ioutil.ReadAll(r.Body)
+	json.Unmarshal(body, &comment)
+	fmt.Println("hey postId : ", comment.PostId)
+	comments = tranlateSQLrowComs(selectComByPostId(comment.PostId))
+	jsonComs, _ := json.Marshal(comments)
+	w.Write(jsonComs)
+}
+func AddCommsHandleFunc(w http.ResponseWriter, r *http.Request) {
+	var comment Commentaires
+	if r.Method != "POST" {
+		// page d'erreur
+		fmt.Println("erreur methode : ", r.Method)
+		return
+	}
+
+	body, _ := ioutil.ReadAll(r.Body)
+	err := json.Unmarshal(body, &comment)
+	if err != nil {
+		println("ERREUR : ", err)
+	}
+	if comment.Content == "" {
+		w.Write([]byte("{\"error\":\"contenu vide\"}"))
+	} else {
+		addComms(comment)
 	}
 }
