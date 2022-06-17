@@ -18,16 +18,17 @@
       <div class="inscription">
           <div class="info">
       <h1>Connexion</h1>
-    <form method="POST" action="/">
+    <form method="POST" action="/login">
       <label>Email:</label><br />
       <input type="text" id="Email"><br/>
 
       <label>Password:</label><br />
       <input type="text" id="Password"><br/>
 
-      <input onclick="logIn()" type="submit" value="Connexion">
-    </div>
+      <input onclick="logIn()" type="button" value="Connexion">
+    
   </form>
+</div>
 </div>
 <script>
   const logIn = () => {
@@ -40,6 +41,16 @@
         email : document.getElementById("Email").value,
         password: document.getElementById("Password").value
       })
+    })
+    .then(res => res.json())
+    .then((json) => {
+    
+      console.log(json)
+      if (!!json.resp){
+        if (json.resp== "login!"){
+          
+        }
+      }
     })
     
   }

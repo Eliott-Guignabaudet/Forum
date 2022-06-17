@@ -34,6 +34,7 @@ func main() {
 
 	http.HandleFunc("/GetPosts", Forum.GetPostHandlefunc)
 	http.HandleFunc("/CreatePost", Forum.AddPostHandlefunc)
+	http.HandleFunc("/GetSession", Forum.GetSession)
 
 	http.HandleFunc("/GetComms", Forum.GetComsByPostId)
 	http.HandleFunc("/CreateComms", Forum.AddCommsHandleFunc)

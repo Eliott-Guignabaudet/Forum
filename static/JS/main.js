@@ -1,14 +1,4 @@
 let globalJsonPost;
-let postid = 0
-    // document.getElementById("testPost").value = "yay"
-    // fetch("")
-    // .then((res) => {
-    //     return res.json
-    // })
-    // .then((data) => {
-    //     console.log(data)
-    //     document.getElementById("testPost").value = "yay"
-    // }) 
 const searchBar = document.getElementsByClassName("recherche")[0];
 searchBar.addEventListener(onkeydown, function(){searchPosts(searchBar.value)});
 
@@ -110,27 +100,20 @@ fetch("/GetPosts")
     globalJsonPost = json;
 
 })
-
-let input = document.getElementById("motdepasse"); 
-if (input.type === "password")
+function Afficher()
 { 
-input.type = "text"; 
+    let input = document.getElementById("motdepasse"); 
+    if (input.type === "password")
+    { 
+        input.type = "text"; 
+    } 
+    else
+    { 
+        input.type = "password"; 
+    } 
 } 
-else
-{ 
-input.type = "password"; 
-} 
-
 
    
-   
-   fetch("")
-    .then((res) => {
-        return res.json
-    })
-    .then((data) => {
-        console.log(data)
-    }) 
 
 
   
