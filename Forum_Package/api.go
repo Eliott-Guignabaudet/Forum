@@ -48,7 +48,7 @@ func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &posts)
 	posts = tranlateSQLrowPosts(selectAllFromTable("posts"))
-	for i, _ := range posts {
+	for i := range posts {
 		posts[i].UserName = selectUserNameById(posts[i].UserId)
 	}
 
