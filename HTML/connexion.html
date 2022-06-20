@@ -22,8 +22,8 @@
       <label>Email:</label><br />
       <input type="text" id="Email"><br/>
 
-      <label>Password:</label><br />
-      <input type="text" id="Password"><br/>
+      <p id="errorPseudo" style="color: red"></p><div><label>Mot de Passe: </label><br /><input type="password" id="motdepasse" >
+        <input type="button" onclick="Afficher()" value="&#128065;"></input></div>
 
       <input onclick="logIn()" type="button" value="Connexion">
     
@@ -31,6 +31,27 @@
 </div>
 </div>
 <script>
+  function Afficher()
+{ 
+    let input = document.getElementById("motdepasse"); 
+    if (input.type === "password")
+    { 
+        input.type = "text"; 
+    } 
+    else
+    { 
+        input.type = "password"; 
+    } 
+    let inputconfirm = document.getElementById("confirmmotdepasse"); 
+    if (inputconfirm.type === "password")
+    { 
+        inputconfirm.type = "text"; 
+    } 
+    else
+    { 
+        inputconfirm.type = "password"; 
+    } 
+} 
   const logIn = () => {
     fetch("/login" , {
       method: "POST",
@@ -39,7 +60,7 @@
       },
       body: JSON.stringify({
         email : document.getElementById("Email").value,
-        password: document.getElementById("Password").value
+        password: document.getElementById("motdepasse").value
       })
     })
     .then(res => res.json())

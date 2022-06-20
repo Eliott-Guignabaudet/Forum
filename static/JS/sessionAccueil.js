@@ -6,7 +6,7 @@ const connected = () => {
     document.getElementById("registerButton").remove()
     document.getElementById("loginButton").remove()
     const newButton = document.createElement("button")
-    newButton.class = "inscr"
+    newButton.setAttribute("class","inscr")
     newButton.textContent = "Déconnexion"
     newButton.id = "deconnexion"
     newButton.addEventListener("click", logOut, false)
