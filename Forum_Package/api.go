@@ -141,7 +141,15 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		println("ERREUR : ", err)
 	}
+<<<<<<< Updated upstream
 
+=======
+	fmt.Println(post)
+	fmt.Println("Title", post.Title)
+	fmt.Println("Content", post.Content)
+	fmt.Println("Category", post.Category)
+	fmt.Println("likes ", post.Likes)
+>>>>>>> Stashed changes
 	if post.Title == "" {
 		// erreur titre vide
 		fmt.Println(post)
@@ -192,7 +200,8 @@ func AddCommsHandleFunc(w http.ResponseWriter, r *http.Request) {
 }
 
 func LikeAPost(w http.ResponseWriter, r *http.Request) {
-	var postidliked int
+	var postliked Post
+	println("1", postliked.Id)
 	if r.Method != "POST" {
 		// page d'erreur
 		fmt.Println("erreur methode : ", r.Method)
@@ -200,10 +209,7 @@ func LikeAPost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	body, _ := ioutil.ReadAll(r.Body)
-	err := json.Unmarshal(body, &postidliked)
-	if err != nil {
-		println("ERREUR : ", err)
-	}
-	println(postidliked)
-	incrementPostsLikes(postidliked)
+	json.Unmarshal(body, &postliked)
+	println("2", postliked.Id)
+	incrementPostsLikes(postliked.Id)
 }

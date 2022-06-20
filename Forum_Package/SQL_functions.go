@@ -25,10 +25,8 @@ func InitDatabase(database string) *sql.DB {
 								UserId INTEGER NOT NULL,
 								Category TEXT NOT NULL,
 								Title TEXT NOT NULL,
-								Content TEXT NOT NULL,` +
-		// Likes INTEGER,
-		// UsersWholiked TEXT,
-		`
+								Content TEXT NOT NULL,
+								Likes INTEGER NOT NULL,
 								FOREIGN KEY (UserId) REFERENCES users(id)
 							);
 
@@ -63,7 +61,7 @@ func addPost(post Post) (int64, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	result, err := db.Exec(`INSERT INTO posts (UserId, Category, Title, Content) VALUES (?, ?, ?, ?)`, post.UserId, post.Category, post.Title, post.Content)
+	result, err := db.Exec(`INSERT INTO posts (UserId, Category, Title, Content, Likes) VALUES (?, ?, ?, ?, ?)`, post.UserId, post.Category, post.Title, post.Content, post.Likes)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -118,10 +116,11 @@ func selectComByPostId(post_id int) *sql.Rows {
 }
 
 func incrementPostsLikes(post_id int) *sql.Rows {
+	println(post_id)
 	db, err := sql.Open("sqlite3", "ForumDB.db")
 	if err != nil {
 		log.Fatal(err)
 	}
-	result, _ := db.Query(`UPDATE posts SET Likes = Likes + 1 WHERE PostId = ?`, post_id)
+	result, _ := db.Query(`UPDATE posts SET Likes = Likes + 1 WHERE Id = ?`, post_id)
 	return result
 }

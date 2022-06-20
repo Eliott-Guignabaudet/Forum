@@ -254,7 +254,7 @@ function OnclickCreateComm(){
             userId : idActualUser,
             PostId : postid,
             content: document.getElementById("contentComms").value,
-            zerolikes : 0,
+            Likes : 0,
         })
     })
     .then((res) => {
@@ -288,13 +288,15 @@ function Filter(category){
     displayPosts(postFiltered)
 }
  function Addlike2Post(postID){
-    fetch("/likePost", {
+    console.log(postID)
+    fetch("/LikePost", {
         method: "POST",
         headers: {
             "content-type": "application/json"
         },
         body: JSON.stringify({
-            postId : postID,
+            Id : postID
         })
     })
+    
  }

@@ -9,8 +9,7 @@ func tranlateSQLrowPosts(rows *sql.Rows) []Post {
 	var posts []Post
 	for rows.Next() {
 		var post Post
-		err := rows.Scan(&post.Id, &post.UserId, &post.Category, &post.Title, &post.Content) //&post.Likes, &post.UsersWholiked
-
+		err := rows.Scan(&post.Id, &post.UserId, &post.Category, &post.Title, &post.Content, &post.Likes)
 		if err != nil {
 			log.Fatal(err)
 		}
