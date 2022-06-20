@@ -4,7 +4,7 @@ const connected = () => {
     document.getElementById("registerButton").remove()
     document.getElementById("loginButton").remove()
     newButton = document.createElement("button")
-    newButton.class = "inscr"
+    newButton.setAttribute("class","inscr")
     newButton.textContent = "Déconnexion"
     document.getElementsByClassName("inscriptionConnexion")[0].appendChild(newButton)
 }
