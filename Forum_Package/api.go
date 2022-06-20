@@ -114,9 +114,9 @@ func Login(Rw http.ResponseWriter, Rq *http.Request) {
 		res, _ := json.Marshal(UserInfo)
 		session.Values["authenticated"] = string(res)
 		session.Save(Rq, Rw)
-
 		Rw.Write([]byte("{\"resp\":\"login!\",\"id\":" + strconv.Itoa(UserInfo.Id) + ",\"pseudo\":\"" + UserInfo.Pseudo + "\", \"email\":\"" + UserInfo.Email + "\" }"))
 		//Rw.Write([]byte("{\"resp\":\"login!\"}"))
+
 	}
 
 }
