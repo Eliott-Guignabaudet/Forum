@@ -57,7 +57,14 @@ func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 }
 
 func Register(rw http.ResponseWriter, r *http.Request) {
+
 	var User UserParams
+	if r.Method != "POST" {
+		// page d'erreur
+		fmt.Println("erreur methode : ", r.Method)
+		http.Redirect(rw, r, "/", http.StatusFound)
+		return
+	}
 	db := InitDatabase("ForumDB.db")
 	defer db.Close()
 	body, _ := ioutil.ReadAll(r.Body)
@@ -100,7 +107,14 @@ func Register(rw http.ResponseWriter, r *http.Request) {
 }
 
 func Login(Rw http.ResponseWriter, Rq *http.Request) {
+
 	var Users UserParams
+	if Rq.Method != "POST" {
+		// page d'erreur
+		fmt.Println("erreur methode : ", Rq.Method)
+		http.Redirect(Rw, Rq, "/", http.StatusFound)
+		return
+	}
 	isCorrectUser := false
 	db := InitDatabase("ForumDB.db")
 	defer db.Close()
@@ -133,6 +147,7 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		// page d'erreur
 		fmt.Println("erreur methode : ", r.Method)
+		http.Redirect(w, r, "/", http.StatusFound)
 		return
 	}
 
@@ -176,6 +191,7 @@ func AddCommsHandleFunc(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		// page d'erreur
 		fmt.Println("erreur methode : ", r.Method)
+		http.Redirect(w, r, "/", http.StatusFound)
 		return
 	}
 
@@ -196,6 +212,7 @@ func LikeAPost(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		// page d'erreur
 		fmt.Println("erreur methode : ", r.Method)
+		http.Redirect(w, r, "/", http.StatusFound)
 		return
 	}
 
