@@ -389,6 +389,11 @@ display: block;
     visibility: hidden;
 }
 
+#externLogin{
+    position: absolute;
+    top: 97%;
+}
+
 
 @font-face {
     font-family: 'Pokemon';
