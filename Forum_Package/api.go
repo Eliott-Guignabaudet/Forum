@@ -156,15 +156,6 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		println("ERREUR : ", err)
 	}
-<<<<<<< Updated upstream
-
-=======
-	fmt.Println(post)
-	fmt.Println("Title", post.Title)
-	fmt.Println("Content", post.Content)
-	fmt.Println("Category", post.Category)
-	fmt.Println("likes ", post.Likes)
->>>>>>> Stashed changes
 	if post.Title == "" {
 		// erreur titre vide
 		fmt.Println(post)
