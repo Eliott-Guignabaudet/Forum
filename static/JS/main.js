@@ -1,15 +1,21 @@
 let globalJsonPost;
+let user;
 const searchBar = document.getElementsByClassName("recherche")[0];
-searchBar.addEventListener(onkeydown, function(){searchPosts(searchBar.value)});
+
+
+fetch("/GetSession")
+.then(res => res.json())
+.then(JSON => {
+    user = JSON;
+})
+    
+
 
 const displayPosts = (posts) =>{
     const postsDisplayed = document.querySelectorAll(".post .posts");
-    console.log("displayed:")
     for (const post of postsDisplayed) {
-        console.log(post)
         post.remove();
     }
-
 
     posts.forEach(element => {
         const newPost = document.createElement("div");
@@ -20,6 +26,8 @@ const displayPosts = (posts) =>{
         const likeButton = document.createElement("button");
         const hrefpopup = document.createElement("a")
         const nbLikes = document.createElement("a")
+        const nameUser = document.createElement("div")
+
 
         hrefpopup.setAttribute("href","#popupCom")
         const comentary = document.createElement("button");
@@ -39,6 +47,9 @@ const displayPosts = (posts) =>{
         divReactionStyle.style.justifyContent = "space-around"
         likeButton.textContent = "❤️";
         comentary.textContent = "Commentaire";
+        nameUser.setAttribute("id", "createurPost")
+        nameUser.style.textAlign = "center";
+        nameUser.textContent = "créer par: "+element.UserName
 
 
         divReactionStyle.appendChild(likeButton);
@@ -46,8 +57,10 @@ const displayPosts = (posts) =>{
         divReactions.appendChild(divReactionStyle);
         newPost.appendChild(title);
         newPost.appendChild(content);
-        newPost.appendChild(nbLikes)
+        newPost.appendChild(nbLikes);
+        newPost.appendChild(nameUser);
         newPost.appendChild(divReactions);
+        
 
         document.getElementsByClassName("post")[0].children[0].appendChild(newPost);
     });
@@ -60,7 +73,7 @@ const displayComms = (comments) =>{
         console.log(post)
         comment.remove();
     }
-
+    
 
     comments.forEach(element => {
         const newComms = document.createElement("div");
@@ -84,19 +97,21 @@ const displayComms = (comments) =>{
     });
 }
 
-const searchPosts = (searchValue) => {
-    console.log("search!")
+const searchPosts = () => {
+    const searchBar = document.getElementsByClassName("recherche")[0];
+    const searchValue = searchBar.value
     const postFiltered = globalJsonPost.filter(post => {
-        if (post.Content.includes(searchValue)){
+        if (post.Content.toLowerCase().includes(searchValue.toLowerCase())){
             return true
-        }else if (post.Title.includes(searchValue)){
+        }else if (post.Title.toLowerCase().includes(searchValue.toLowerCase())){
             return true
         }
         return false
     })
-    console.log(postFiltered)
+    console.log(searchValue)
     displayPosts(postFiltered)
 }
+searchBar.addEventListener(onkeydown, searchPosts);
 
 fetch("/GetPosts")
 .then((res) => res.json())
@@ -133,11 +148,11 @@ function Afficher()
 
   
 function OnclickCreatePost(){
-    idActualUser = 1;
+    idActualUser = user.id;
     console.log("cliquer")
     if (idActualUser != 0){
         console.log("OnclickCreatepost : OK")
-
+ 
     fetch("/CreatePost", {
         method: "POST",
         headers: {
@@ -156,10 +171,12 @@ function OnclickCreatePost(){
     .then((data) => {
         console.log("data:",data);
 
-        // if (!!data.error){
-        //     document.getElementById("errorPost").innerText = data.error
-        //     return
-        // }
+        if (!!data.error){
+             document.getElementById("errorPost").innerText = data.error
+             return
+        }else{
+            document.location.href = "/";
+        }
     })
     .catch((resp) => console.log(resp))
     }else{

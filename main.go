@@ -13,6 +13,7 @@ func main() {
 	Home := template.Must(template.ParseFiles("HTML/Accueil.html"))
 	login := template.Must(template.ParseFiles("HTML/connexion.html"))
 	profil := template.Must(template.ParseFiles("HTML/profil.html"))
+
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 
 		Home.Execute(rw, nil)

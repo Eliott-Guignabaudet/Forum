@@ -25,9 +25,10 @@ func InitDatabase(database string) *sql.DB {
 								UserId INTEGER NOT NULL,
 								Category TEXT NOT NULL,
 								Title TEXT NOT NULL,
-								Content TEXT NOT NULL,
-								Likes INTEGER,
-								UsersWholiked TEXT,
+								Content TEXT NOT NULL,` +
+		// Likes INTEGER,
+		// UsersWholiked TEXT,
+		`
 								FOREIGN KEY (UserId) REFERENCES users(id)
 							);
 
@@ -100,6 +101,19 @@ func selectUsersByEmailAndPW(db *sql.DB, email string, password string) UserPara
 	var user UserParams
 	db.QueryRow(`SELECT * FROM users WHERE email = ? and password = ?`, email, password).Scan(&user.Id, &user.Pseudo, &user.Email, &user.Password)
 	return user
+}
+
+func selectUserNameById(id int) string {
+	db, err := sql.Open("sqlite3", "ForumDB.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+	var name string
+	err = db.QueryRow(`SELECT name FROM users WHERE id = ?`, id).Scan(&name)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return name
 }
 
 // func selectUserByEmailAndPW(db *sql.DB, email string, password string) UserParams {

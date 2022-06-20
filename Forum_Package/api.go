@@ -12,12 +12,14 @@ import (
 )
 
 type Post struct {
-	Id       int
-	UserId   int
-	Category string
-	Title    string
-	Content  string
-	Likes    int
+	Id            int
+	UserId        int
+	UserName      string
+	Category      string
+	Title         string
+	Content       string
+	Likes         int
+	UsersWholiked string
 }
 
 type UserParams struct {
@@ -46,6 +48,10 @@ func GetPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &posts)
 	posts = tranlateSQLrowPosts(selectAllFromTable("posts"))
+	for i, _ := range posts {
+		posts[i].UserName = selectUserNameById(posts[i].UserId)
+	}
+
 	jsonPosts, _ := json.Marshal(posts)
 	w.Write(jsonPosts)
 }
@@ -124,7 +130,6 @@ func Login(Rw http.ResponseWriter, Rq *http.Request) {
 
 func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	var post Post
-
 	if r.Method != "POST" {
 		// page d'erreur
 		fmt.Println("erreur methode : ", r.Method)
@@ -136,10 +141,7 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		println("ERREUR : ", err)
 	}
-	fmt.Println(post)
-	fmt.Println("Title", post.Title)
-	fmt.Println("Content", post.Content)
-	fmt.Println("Category", post.Category)
+
 	if post.Title == "" {
 		// erreur titre vide
 		fmt.Println(post)
@@ -154,8 +156,8 @@ func AddPostHandlefunc(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Aucune categorie")
 		w.Write([]byte("{\"error\":\"aucune categorie\"}"))
 	} else {
-		fmt.Println("api: ", post)
 		addPost(post)
+		w.Write([]byte("{\"resp\":\"poste créer\"}"))
 	}
 }
 

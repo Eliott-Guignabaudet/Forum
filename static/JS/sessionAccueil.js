@@ -18,7 +18,7 @@ const logOut = ()=> {
     fetch("/Logout")
     .then(res => res.json())
     .then(JSON => {
-        document.location.reload()
+        document.location.href = "/"
     })
 }
 
