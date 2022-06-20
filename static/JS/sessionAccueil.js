@@ -1,20 +1,34 @@
+
+
 const connected = () => {
-    document.getElementsByClassName("envoyerpost")[0].remove()
+
 
     document.getElementById("registerButton").remove()
     document.getElementById("loginButton").remove()
-    newButton = document.createElement("button")
+    const newButton = document.createElement("button")
     newButton.class = "inscr"
     newButton.textContent = "Déconnexion"
+    newButton.id = "deconnexion"
+    newButton.addEventListener("click", logOut, false)
     document.getElementsByClassName("inscriptionConnexion")[0].appendChild(newButton)
 }
 
+
+const logOut = ()=> {
+    fetch("/Logout")
+    .then(res => res.json())
+    .then(JSON => {
+        document.location.reload()
+    })
+}
 
 fetch("/GetSession")
 .then(res => res.json())
 .then(JSON =>{
     if (!JSON.resp){
         connected()
+        return
     }
-    console.log(JSON)
+    document.getElementById("popuplink").remove()
 })
+

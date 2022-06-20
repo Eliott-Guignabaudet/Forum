@@ -31,6 +31,7 @@ func main() {
 		login.Execute(rw, nil)
 	})
 	http.HandleFunc("/login", Forum.Login)
+	http.HandleFunc("/Logout", Forum.DeleteSession)
 
 	http.HandleFunc("/GetPosts", Forum.GetPostHandlefunc)
 	http.HandleFunc("/CreatePost", Forum.AddPostHandlefunc)

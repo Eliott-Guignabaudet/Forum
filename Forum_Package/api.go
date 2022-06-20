@@ -110,7 +110,7 @@ func Login(Rw http.ResponseWriter, Rq *http.Request) {
 	}
 	fmt.Println(UserInfo.Id)
 	if isCorrectUser {
-		session, _ := store.Get(Rq, "cookie-name")
+		session, _ := store.Get(Rq, "session")
 		res, _ := json.Marshal(UserInfo)
 		session.Values["authenticated"] = string(res)
 		session.Save(Rq, Rw)
