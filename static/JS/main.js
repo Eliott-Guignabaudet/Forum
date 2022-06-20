@@ -111,6 +111,15 @@ function Afficher()
     { 
         input.type = "password"; 
     } 
+    let inputconfirm = document.getElementById("confirmmotdepasse"); 
+    if (inputconfirm.type === "password")
+    { 
+        inputconfirm.type = "text"; 
+    } 
+    else
+    { 
+        inputconfirm.type = "password"; 
+    } 
 } 
 
    

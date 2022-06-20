@@ -27,13 +27,11 @@
       <input type="text" id="Email"><br/>
       <p id="errorEmail" style="color: red"></p>
 
-      <label>Password:</label><br />
-      <input type="text" id="Password"><br/>
-      <p id="errorPassword" style="color: red"></p>
+      <p id="errorPassword" style="color: red"></p><div><label>Mot de Passe: </label><br /><input type="password" id="Password" >
+        <input type="button" onclick="Afficher()" value="&#128065;"></input></div>
 
-      <label>Confirmation:</label><br />
-      <input type="text" id="ConfirmPassword"><br/>
-      <p id="errorconfirmPW" style="color: red"></p>
+        <p id="errorConfirmPW" style="color: red"></p><div><label>Confirmation du mot de passe: </label><br /><input type="password" id="ConfirmPassword" >
+          <input type="button" onclick="Afficher()" value="&#128065;"></input></div>
       <button type="button" onclick="onClickRegister()">S'inscrire</button>
       <!-- <input onclick="onClickRegister()" type="submit" value="S'inscrire"> -->
       <p id="ConfirmRegister"></p>
