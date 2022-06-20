@@ -74,7 +74,7 @@ const displayComms = (comments) =>{
         newComms.appendChild(content);
         newComms.appendChild(divReactions);
 
-        document.getElementsByClassName("1postComms")[0].appendChild(newComms);
+        document.getElementsByClassName("postComms")[0].appendChild(newComms);
     });
 }
 
