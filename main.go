@@ -40,6 +40,8 @@ func main() {
 	http.HandleFunc("/GetComms", Forum.GetComsByPostId)
 	http.HandleFunc("/CreateComms", Forum.AddCommsHandleFunc)
 
+	http.HandleFunc("/likePost", Forum.LikeAPost)
+
 	fmt.Println("test1")
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))

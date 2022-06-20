@@ -20,17 +20,19 @@
               <a href="/Profil"><button class="profil"></button></a>
             </div>
         </div>
+
+        <button>></button>
         <div id="theme">
-          <button class="buttontheme" id="button_environement" onclick="ChangeBackgroundcolorV()">Environnement</button>
-          <button class="buttontheme" id="button_sport" onclick="ChangeBackgroundcolorS()">Sport</button>
-          <button class="buttontheme" id="button_tech" onclick="ChangeBackgroundcolorT()">Technologie</button>
-          <button class="buttontheme" id="button_jeuxvideo" onclick="ChangeBackgroundcolorJ()">Jeux Vidéo</button>
+          <button class="buttontheme" id="button_environement" onclick="ChangeBackgroundcolorV(),Filter(`Environnement`)">Environnement</button>
+          <button class="buttontheme" id="button_sport" onclick="ChangeBackgroundcolorS(),Filter(`Sport`)">Sport</button>
+          <button class="buttontheme" id="button_tech" onclick="ChangeBackgroundcolorT(),Filter(`Technologie`)">Technologie</button>
+          <button class="buttontheme" id="button_jeuxvideo" onclick="ChangeBackgroundcolorJ(),Filter(`Jeux-Vidéo`)">Jeux Vidéo</button>
         </div>
         <div id="theme">
-          <button class="buttontheme" id="button_reflexion" onclick="ChangeBackgroundcolorR()">Réfléxion</button>
-          <button class="buttontheme" id="button_music" onclick="ChangeBackgroundcolorM()">Musique</button>
-          <button class="buttontheme" id="button_humour" onclick="ChangeBackgroundcolorH()">Humour</button>
-          <button class="buttontheme" id="button_autre" onclick="ChangeBackgroundcolorA()">Autre</button>
+          <button class="buttontheme" id="button_reflexion" onclick="ChangeBackgroundcolorR(),Filter(`Réfléxion`)">Réfléxion</button>
+          <button class="buttontheme" id="button_music" onclick="ChangeBackgroundcolorM(),Filter(`Musique`)">Musique</button>
+          <button class="buttontheme" id="button_humour" onclick="ChangeBackgroundcolorH(),Filter(`Humour`)">Humour</button>
+          <button class="buttontheme" id="button_autre" onclick="ChangeBackgroundcolorA(),Filter(`Autre`)">Autre</button>
         </div>
         <div id="theme">
           <a id="popuplink" href="#popupPosts">
@@ -61,7 +63,8 @@
             </select>
             
            <!-- <img src="https://imgs.search.brave.com/W5Jx9PoAGPldnFMCYdhiNf3Cty0hAjqOehupN73WO1U/rs:fit:800:720:1/g:ce/aHR0cDovL3BuZ2lt/Zy5jb20vdXBsb2Fk/cy9wb2tlYmFsbC9w/b2tlYmFsbF9QTkcz/My5wbmc" alt="Envoyer" id="ball_envoyer"> -->
-           <div class="envoyerpost" ><a href=""><button id="envoyer" onclick="OnclickCreatePost() ">Envoyer</button></a></div>         
+
+           <div class="envoyerpost"><a href=""><button id="envoyer" onclick="OnclickCreatePost()">Envoyer</button></a></div>         
           </div>
         </div>
         

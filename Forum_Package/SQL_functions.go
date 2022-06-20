@@ -26,6 +26,8 @@ func InitDatabase(database string) *sql.DB {
 								Category TEXT NOT NULL,
 								Title TEXT NOT NULL,
 								Content TEXT NOT NULL,
+								Likes INTEGER,
+								UsersWholiked TEXT,
 								FOREIGN KEY (UserId) REFERENCES users(id)
 							);
 
@@ -116,6 +118,11 @@ func selectComByPostId(post_id int) *sql.Rows {
 	return result
 }
 
-// func selectPostbyCategory(Category string) *sql.Rows {
-
-// }
+func incrementPostsLikes(post_id int) *sql.Rows {
+	db, err := sql.Open("sqlite3", "ForumDB.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+	result, _ := db.Query(`UPDATE posts SET Likes = Likes + 1 WHERE PostId = ?`, post_id)
+	return result
+}

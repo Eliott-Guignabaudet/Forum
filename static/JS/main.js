@@ -19,15 +19,19 @@ const displayPosts = (posts) =>{
         const divReactionStyle = document.createElement("div");
         const likeButton = document.createElement("button");
         const hrefpopup = document.createElement("a")
+        const nbLikes = document.createElement("a")
+
         hrefpopup.setAttribute("href","#popupCom")
         const comentary = document.createElement("button");
         comentary.setAttribute("onclick",`RecupererIdComms(${element.Id})`)
+        likeButton.setAttribute("onclick",`Addlike2Post(${element.Id})`)
 
         hrefpopup.append(comentary)
         newPost.setAttribute("id",String(element.Id))
         newPost.className = "posts";
         title.textContent = element.Title;
         content.textContent = element.Content;
+        nbLikes.textContent = element.Likes
         divReactions.className = "reaction";
         divReactionStyle.style.backgroundColor = "beige";
         divReactionStyle.style.borderRadius = "10px";
@@ -36,11 +40,13 @@ const displayPosts = (posts) =>{
         likeButton.textContent = "❤️";
         comentary.textContent = "Commentaire";
 
+
         divReactionStyle.appendChild(likeButton);
         divReactionStyle.appendChild(hrefpopup)
         divReactions.appendChild(divReactionStyle);
         newPost.appendChild(title);
         newPost.appendChild(content);
+        newPost.appendChild(nbLikes)
         newPost.appendChild(divReactions);
 
         document.getElementsByClassName("post")[0].children[0].appendChild(newPost);
@@ -231,6 +237,7 @@ function OnclickCreateComm(){
             userId : idActualUser,
             PostId : postid,
             content: document.getElementById("contentComms").value,
+            zerolikes : 0,
         })
     })
     .then((res) => {
@@ -251,6 +258,26 @@ function OnclickCreateComm(){
     
 }
 
-// function filter(){
-//     document.getElementsByClassName()
-// }
+function Filter(category){
+    //displayPosts()
+    console.log(category)
+    const postFiltered = globalJsonPost.filter(post => {
+        if (post.Category.includes(category)){
+            return true
+        }
+        return false
+    })
+    console.log(postFiltered)
+    displayPosts(postFiltered)
+}
+ function Addlike2Post(postID){
+    fetch("/likePost", {
+        method: "POST",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            postId : postID,
+        })
+    })
+ }

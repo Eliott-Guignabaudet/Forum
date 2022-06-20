@@ -17,6 +17,7 @@ type Post struct {
 	Category string
 	Title    string
 	Content  string
+	Likes    int
 }
 
 type UserParams struct {
@@ -186,4 +187,21 @@ func AddCommsHandleFunc(w http.ResponseWriter, r *http.Request) {
 	} else {
 		addComms(comment)
 	}
+}
+
+func LikeAPost(w http.ResponseWriter, r *http.Request) {
+	var postidliked int
+	if r.Method != "POST" {
+		// page d'erreur
+		fmt.Println("erreur methode : ", r.Method)
+		return
+	}
+
+	body, _ := ioutil.ReadAll(r.Body)
+	err := json.Unmarshal(body, &postidliked)
+	if err != nil {
+		println("ERREUR : ", err)
+	}
+	println(postidliked)
+	incrementPostsLikes(postidliked)
 }
